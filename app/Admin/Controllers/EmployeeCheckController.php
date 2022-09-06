@@ -42,6 +42,9 @@ class EmployeeCheckController extends AdminController
             $grid->column('timestamp', __('Check timestamp'));
             $grid->column('admin_user.name', __('Name'));
 
+            $grid->export();
+            // xlsx
+            $grid->export()->xlsx();
             // $grid->column('is_attach')->bool();
             // $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
