@@ -50,6 +50,7 @@ class EmployeeCheckController extends AdminController
             // $grid->column('updated_at')->sortable();
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->between('timestamp');
                 $filter->equal('admin_user.name', __('Name'));
             });
         });
