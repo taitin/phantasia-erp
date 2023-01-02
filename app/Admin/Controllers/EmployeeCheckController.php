@@ -33,6 +33,7 @@ class EmployeeCheckController extends AdminController
 
 
         return Grid::make(new EmployeeCheck(['admin_user']), function (Grid $grid) {
+            $grid->model()->orderBy('id', 'desc');
             $admin_user_id = Admin::user()->id;
             if ($admin_user_id !== 1) {
 

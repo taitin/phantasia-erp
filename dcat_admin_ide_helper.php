@@ -20,7 +20,10 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection created_at
      * @property Grid\Column|Collection updated_at
      * @property Grid\Column|Collection name
+     * @property Grid\Column|Collection remain
+     * @property Grid\Column|Collection comment
      * @property Grid\Column|Collection type
+     * @property Grid\Column|Collection deleted_at
      * @property Grid\Column|Collection version
      * @property Grid\Column|Collection detail
      * @property Grid\Column|Collection is_enabled
@@ -37,14 +40,24 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection password
      * @property Grid\Column|Collection avatar
      * @property Grid\Column|Collection remember_token
+     * @property Grid\Column|Collection date
+     * @property Grid\Column|Collection summary
+     * @property Grid\Column|Collection income
+     * @property Grid\Column|Collection pay
+     * @property Grid\Column|Collection account_id
+     * @property Grid\Column|Collection ledger_id
      * @property Grid\Column|Collection timestamp
      * @property Grid\Column|Collection is_attach
+     * @property Grid\Column|Collection admin_user_id
      * @property Grid\Column|Collection uuid
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection invoice
+     * @property Grid\Column|Collection catagory_id
+     * @property Grid\Column|Collection balance
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection tokenable_type
@@ -69,7 +82,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection checkID
      * @property Grid\Column|Collection handle
      * @property Grid\Column|Collection result
-     * @property Grid\Column|Collection date
      * @property Grid\Column|Collection O_amount
      * @property Grid\Column|Collection O_totalCost
      * @property Grid\Column|Collection P_amount
@@ -109,7 +121,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection total
      * @property Grid\Column|Collection status
      * @property Grid\Column|Collection reason
-     * @property Grid\Column|Collection comment
      * @property Grid\Column|Collection useBonus
      * @property Grid\Column|Collection purchasePrice
      * @property Grid\Column|Collection changeID
@@ -129,7 +140,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection MIN
      * @property Grid\Column|Collection MOUT
      * @property Grid\Column|Collection credit
-     * @property Grid\Column|Collection remain
      * @property Grid\Column|Collection note
      * @property Grid\Column|Collection aid
      * @property Grid\Column|Collection cashType
@@ -176,7 +186,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection backNum
      * @property Grid\Column|Collection display
      * @property Grid\Column|Collection ECID
-     * @property Grid\Column|Collection invoice
      * @property Grid\Column|Collection price
      * @property Grid\Column|Collection platformID
      * @property Grid\Column|Collection ECOrderNum
@@ -291,6 +300,12 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection purchaseID
      * @property Grid\Column|Collection core
      * @property Grid\Column|Collection six
+     * @property Grid\Column|Collection from
+     * @property Grid\Column|Collection to
+     * @property Grid\Column|Collection mobile
+     * @property Grid\Column|Collection check_shopID
+     * @property Grid\Column|Collection checked_at
+     * @property Grid\Column|Collection checked
      * @property Grid\Column|Collection blackcont
      * @property Grid\Column|Collection blackToken
      * @property Grid\Column|Collection bonusStatus
@@ -415,7 +430,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection width
      * @property Grid\Column|Collection height
      * @property Grid\Column|Collection weight
-     * @property Grid\Column|Collection deleted_at
      * @property Grid\Column|Collection orgNum
      * @property Grid\Column|Collection resultNum
      * @property Grid\Column|Collection post
@@ -527,7 +541,10 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection created_at(string $label = null)
      * @method Grid\Column|Collection updated_at(string $label = null)
      * @method Grid\Column|Collection name(string $label = null)
+     * @method Grid\Column|Collection remain(string $label = null)
+     * @method Grid\Column|Collection comment(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
+     * @method Grid\Column|Collection deleted_at(string $label = null)
      * @method Grid\Column|Collection version(string $label = null)
      * @method Grid\Column|Collection detail(string $label = null)
      * @method Grid\Column|Collection is_enabled(string $label = null)
@@ -544,14 +561,24 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection password(string $label = null)
      * @method Grid\Column|Collection avatar(string $label = null)
      * @method Grid\Column|Collection remember_token(string $label = null)
+     * @method Grid\Column|Collection date(string $label = null)
+     * @method Grid\Column|Collection summary(string $label = null)
+     * @method Grid\Column|Collection income(string $label = null)
+     * @method Grid\Column|Collection pay(string $label = null)
+     * @method Grid\Column|Collection account_id(string $label = null)
+     * @method Grid\Column|Collection ledger_id(string $label = null)
      * @method Grid\Column|Collection timestamp(string $label = null)
      * @method Grid\Column|Collection is_attach(string $label = null)
+     * @method Grid\Column|Collection admin_user_id(string $label = null)
      * @method Grid\Column|Collection uuid(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection invoice(string $label = null)
+     * @method Grid\Column|Collection catagory_id(string $label = null)
+     * @method Grid\Column|Collection balance(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
@@ -576,7 +603,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection checkID(string $label = null)
      * @method Grid\Column|Collection handle(string $label = null)
      * @method Grid\Column|Collection result(string $label = null)
-     * @method Grid\Column|Collection date(string $label = null)
      * @method Grid\Column|Collection O_amount(string $label = null)
      * @method Grid\Column|Collection O_totalCost(string $label = null)
      * @method Grid\Column|Collection P_amount(string $label = null)
@@ -616,7 +642,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection total(string $label = null)
      * @method Grid\Column|Collection status(string $label = null)
      * @method Grid\Column|Collection reason(string $label = null)
-     * @method Grid\Column|Collection comment(string $label = null)
      * @method Grid\Column|Collection useBonus(string $label = null)
      * @method Grid\Column|Collection purchasePrice(string $label = null)
      * @method Grid\Column|Collection changeID(string $label = null)
@@ -636,7 +661,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection MIN(string $label = null)
      * @method Grid\Column|Collection MOUT(string $label = null)
      * @method Grid\Column|Collection credit(string $label = null)
-     * @method Grid\Column|Collection remain(string $label = null)
      * @method Grid\Column|Collection note(string $label = null)
      * @method Grid\Column|Collection aid(string $label = null)
      * @method Grid\Column|Collection cashType(string $label = null)
@@ -683,7 +707,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection backNum(string $label = null)
      * @method Grid\Column|Collection display(string $label = null)
      * @method Grid\Column|Collection ECID(string $label = null)
-     * @method Grid\Column|Collection invoice(string $label = null)
      * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection platformID(string $label = null)
      * @method Grid\Column|Collection ECOrderNum(string $label = null)
@@ -798,6 +821,12 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection purchaseID(string $label = null)
      * @method Grid\Column|Collection core(string $label = null)
      * @method Grid\Column|Collection six(string $label = null)
+     * @method Grid\Column|Collection from(string $label = null)
+     * @method Grid\Column|Collection to(string $label = null)
+     * @method Grid\Column|Collection mobile(string $label = null)
+     * @method Grid\Column|Collection check_shopID(string $label = null)
+     * @method Grid\Column|Collection checked_at(string $label = null)
+     * @method Grid\Column|Collection checked(string $label = null)
      * @method Grid\Column|Collection blackcont(string $label = null)
      * @method Grid\Column|Collection blackToken(string $label = null)
      * @method Grid\Column|Collection bonusStatus(string $label = null)
@@ -922,7 +951,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection width(string $label = null)
      * @method Grid\Column|Collection height(string $label = null)
      * @method Grid\Column|Collection weight(string $label = null)
-     * @method Grid\Column|Collection deleted_at(string $label = null)
      * @method Grid\Column|Collection orgNum(string $label = null)
      * @method Grid\Column|Collection resultNum(string $label = null)
      * @method Grid\Column|Collection post(string $label = null)
@@ -1039,7 +1067,10 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection created_at
      * @property Show\Field|Collection updated_at
      * @property Show\Field|Collection name
+     * @property Show\Field|Collection remain
+     * @property Show\Field|Collection comment
      * @property Show\Field|Collection type
+     * @property Show\Field|Collection deleted_at
      * @property Show\Field|Collection version
      * @property Show\Field|Collection detail
      * @property Show\Field|Collection is_enabled
@@ -1056,14 +1087,24 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection password
      * @property Show\Field|Collection avatar
      * @property Show\Field|Collection remember_token
+     * @property Show\Field|Collection date
+     * @property Show\Field|Collection summary
+     * @property Show\Field|Collection income
+     * @property Show\Field|Collection pay
+     * @property Show\Field|Collection account_id
+     * @property Show\Field|Collection ledger_id
      * @property Show\Field|Collection timestamp
      * @property Show\Field|Collection is_attach
+     * @property Show\Field|Collection admin_user_id
      * @property Show\Field|Collection uuid
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection invoice
+     * @property Show\Field|Collection catagory_id
+     * @property Show\Field|Collection balance
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection tokenable_type
@@ -1088,7 +1129,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection checkID
      * @property Show\Field|Collection handle
      * @property Show\Field|Collection result
-     * @property Show\Field|Collection date
      * @property Show\Field|Collection O_amount
      * @property Show\Field|Collection O_totalCost
      * @property Show\Field|Collection P_amount
@@ -1128,7 +1168,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection total
      * @property Show\Field|Collection status
      * @property Show\Field|Collection reason
-     * @property Show\Field|Collection comment
      * @property Show\Field|Collection useBonus
      * @property Show\Field|Collection purchasePrice
      * @property Show\Field|Collection changeID
@@ -1148,7 +1187,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection MIN
      * @property Show\Field|Collection MOUT
      * @property Show\Field|Collection credit
-     * @property Show\Field|Collection remain
      * @property Show\Field|Collection note
      * @property Show\Field|Collection aid
      * @property Show\Field|Collection cashType
@@ -1195,7 +1233,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection backNum
      * @property Show\Field|Collection display
      * @property Show\Field|Collection ECID
-     * @property Show\Field|Collection invoice
      * @property Show\Field|Collection price
      * @property Show\Field|Collection platformID
      * @property Show\Field|Collection ECOrderNum
@@ -1310,6 +1347,12 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection purchaseID
      * @property Show\Field|Collection core
      * @property Show\Field|Collection six
+     * @property Show\Field|Collection from
+     * @property Show\Field|Collection to
+     * @property Show\Field|Collection mobile
+     * @property Show\Field|Collection check_shopID
+     * @property Show\Field|Collection checked_at
+     * @property Show\Field|Collection checked
      * @property Show\Field|Collection blackcont
      * @property Show\Field|Collection blackToken
      * @property Show\Field|Collection bonusStatus
@@ -1434,7 +1477,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection width
      * @property Show\Field|Collection height
      * @property Show\Field|Collection weight
-     * @property Show\Field|Collection deleted_at
      * @property Show\Field|Collection orgNum
      * @property Show\Field|Collection resultNum
      * @property Show\Field|Collection post
@@ -1546,7 +1588,10 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection created_at(string $label = null)
      * @method Show\Field|Collection updated_at(string $label = null)
      * @method Show\Field|Collection name(string $label = null)
+     * @method Show\Field|Collection remain(string $label = null)
+     * @method Show\Field|Collection comment(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
+     * @method Show\Field|Collection deleted_at(string $label = null)
      * @method Show\Field|Collection version(string $label = null)
      * @method Show\Field|Collection detail(string $label = null)
      * @method Show\Field|Collection is_enabled(string $label = null)
@@ -1563,14 +1608,24 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection password(string $label = null)
      * @method Show\Field|Collection avatar(string $label = null)
      * @method Show\Field|Collection remember_token(string $label = null)
+     * @method Show\Field|Collection date(string $label = null)
+     * @method Show\Field|Collection summary(string $label = null)
+     * @method Show\Field|Collection income(string $label = null)
+     * @method Show\Field|Collection pay(string $label = null)
+     * @method Show\Field|Collection account_id(string $label = null)
+     * @method Show\Field|Collection ledger_id(string $label = null)
      * @method Show\Field|Collection timestamp(string $label = null)
      * @method Show\Field|Collection is_attach(string $label = null)
+     * @method Show\Field|Collection admin_user_id(string $label = null)
      * @method Show\Field|Collection uuid(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection invoice(string $label = null)
+     * @method Show\Field|Collection catagory_id(string $label = null)
+     * @method Show\Field|Collection balance(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)
@@ -1595,7 +1650,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection checkID(string $label = null)
      * @method Show\Field|Collection handle(string $label = null)
      * @method Show\Field|Collection result(string $label = null)
-     * @method Show\Field|Collection date(string $label = null)
      * @method Show\Field|Collection O_amount(string $label = null)
      * @method Show\Field|Collection O_totalCost(string $label = null)
      * @method Show\Field|Collection P_amount(string $label = null)
@@ -1635,7 +1689,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection total(string $label = null)
      * @method Show\Field|Collection status(string $label = null)
      * @method Show\Field|Collection reason(string $label = null)
-     * @method Show\Field|Collection comment(string $label = null)
      * @method Show\Field|Collection useBonus(string $label = null)
      * @method Show\Field|Collection purchasePrice(string $label = null)
      * @method Show\Field|Collection changeID(string $label = null)
@@ -1655,7 +1708,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection MIN(string $label = null)
      * @method Show\Field|Collection MOUT(string $label = null)
      * @method Show\Field|Collection credit(string $label = null)
-     * @method Show\Field|Collection remain(string $label = null)
      * @method Show\Field|Collection note(string $label = null)
      * @method Show\Field|Collection aid(string $label = null)
      * @method Show\Field|Collection cashType(string $label = null)
@@ -1702,7 +1754,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection backNum(string $label = null)
      * @method Show\Field|Collection display(string $label = null)
      * @method Show\Field|Collection ECID(string $label = null)
-     * @method Show\Field|Collection invoice(string $label = null)
      * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection platformID(string $label = null)
      * @method Show\Field|Collection ECOrderNum(string $label = null)
@@ -1817,6 +1868,12 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection purchaseID(string $label = null)
      * @method Show\Field|Collection core(string $label = null)
      * @method Show\Field|Collection six(string $label = null)
+     * @method Show\Field|Collection from(string $label = null)
+     * @method Show\Field|Collection to(string $label = null)
+     * @method Show\Field|Collection mobile(string $label = null)
+     * @method Show\Field|Collection check_shopID(string $label = null)
+     * @method Show\Field|Collection checked_at(string $label = null)
+     * @method Show\Field|Collection checked(string $label = null)
      * @method Show\Field|Collection blackcont(string $label = null)
      * @method Show\Field|Collection blackToken(string $label = null)
      * @method Show\Field|Collection bonusStatus(string $label = null)
@@ -1941,7 +1998,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection width(string $label = null)
      * @method Show\Field|Collection height(string $label = null)
      * @method Show\Field|Collection weight(string $label = null)
-     * @method Show\Field|Collection deleted_at(string $label = null)
      * @method Show\Field|Collection orgNum(string $label = null)
      * @method Show\Field|Collection resultNum(string $label = null)
      * @method Show\Field|Collection post(string $label = null)

@@ -13,6 +13,8 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
-
-    $router->resource('employee-check', 'EmployeeCheckController');
+    $router->resource('cash-flows', 'CashFlowController');
+    $router->resource('accounts', 'AccountController');
+    $router->resource('ledgers', 'LedgerController');
+    $router->resource('subjects', 'SubjectController');
 });
