@@ -41,7 +41,7 @@ class CashFlowController extends AdminController
             $grid->column('summary')->sortable();
             $grid->column('income')->sortable();
             $grid->column('pay')->sortable();
-            $grid->column('account.name')->sortable();
+            $grid->column('account.name', __('account.labels.account'))->sortable();
             $grid->column('comment')->sortable();
             $grid->column('ledgers')->display(function ($value) {
                 if ($this->ledgers)
@@ -135,8 +135,14 @@ class CashFlowController extends AdminController
             $form->display('updated_at');
             $form->saved(function ($form) {
                 $form->repository()->model()->account->updateRemain();
+                $form->repository()->model()->updateRemain();
                 // $cash_flow = ModelsCashFlow::find($id);
                 // $cash_flow->account->updateRemain();
+            });
+            $form->deleted(function (Form $form, $result) {
+                // 获取待删除行数据，这里获取的是一个二维数组
+                $data = $form->repository()->model()->updateRelateRemain();
+                // $form->repository()->model()
             });
         });
     }
