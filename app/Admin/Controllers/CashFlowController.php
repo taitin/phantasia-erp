@@ -36,18 +36,18 @@ class CashFlowController extends AdminController
                 }
                 $grid->header('<h2>全部現金餘額: ' . $total .  '</h2>');
             }
-            $grid->column('id')->sortable();
-            $grid->column('date');
-            $grid->column('summary');
-            $grid->column('income');
-            $grid->column('pay');
-            $grid->column('account.name');
-            $grid->column('comment');
+            // $grid->column('id')->sortable();
+            $grid->column('date')->sortable();
+            $grid->column('summary')->sortable();
+            $grid->column('income')->sortable();
+            $grid->column('pay')->sortable();
+            $grid->column('account.name')->sortable();
+            $grid->column('comment')->sortable();
             $grid->column('ledgers')->display(function ($value) {
                 if ($this->ledgers)
                     return $this->ledgers->pluck('summary');
             })->implode('<br/>');
-            $grid->column('created_at');
+            // $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
             $grid->tools('<a href="' . admin_url('cash-flows') . '" class="btn btn-primary disable-outline">全部</a>');
