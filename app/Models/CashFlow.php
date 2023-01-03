@@ -66,6 +66,7 @@ class CashFlow extends Model
             ->orderBy('date', 'ASC')
             ->orderBy('id', 'ASC')
             ->get();
+        dd($cash_flows);
         foreach ($cash_flows as $cash) {
             $key = false;
             if ($cash->date == $date) {
