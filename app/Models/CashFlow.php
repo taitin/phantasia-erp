@@ -55,7 +55,7 @@ class CashFlow extends Model
         }
     }
 
-    public function updateRelateRemain($id = '', $date = '', $account_id = ' ')
+    public function updateRelateRemain($id = null, $date = null, $account_id = null)
     {
         $id = $id ?? $this->id;
         $date = $date ?? $this->date;
@@ -66,9 +66,7 @@ class CashFlow extends Model
             ->orderBy('date', 'ASC')
             ->orderBy('id', 'ASC')
             ->get();
-        dump($id);
-        dump($date);
-        dd($account_id);
+
 
         foreach ($cash_flows as $cash) {
             $key = false;
