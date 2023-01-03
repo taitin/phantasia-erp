@@ -22,8 +22,8 @@ class Account extends Model
 
     public function updateRemain()
     {
-        $income = DB::table('cash_flows')->where('account_id', $this->id)->sum('income');
-        $pay = DB::table('cash_flows')->where('account_id', $this->id)->sum('pay');
+        $income = DB::table('cash_flows')->whereNull('deleted_at')->where('account_id', $this->id)->sum('income');
+        $pay = DB::table('cash_flows')->whereNull('deleted_at')->where('account_id', $this->id)->sum('pay');
 
         $this->remain = $income - $pay;
         $this->save();
