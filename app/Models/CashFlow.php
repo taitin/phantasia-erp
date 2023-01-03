@@ -68,7 +68,7 @@ class CashFlow extends Model
             ->get();
         dump($id);
         dump($date);
-        dump($account_id);
+        dd($account_id);
 
         foreach ($cash_flows as $cash) {
             $key = false;
