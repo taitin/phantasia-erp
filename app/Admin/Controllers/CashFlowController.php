@@ -142,6 +142,7 @@ class CashFlowController extends AdminController
             $form->deleted(function (Form $form, $result) {
                 // 获取待删除行数据，这里获取的是一个二维数组
                 $data = $form->repository()->model()->updateRelateRemain();
+                $form->repository()->model()->account->updateRemain();
                 // $form->repository()->model()
             });
         });
