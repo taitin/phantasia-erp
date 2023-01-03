@@ -12,7 +12,8 @@ return [
         'account_id' => '帳戶',
         'comment' => '備註',
         'ledger_id' => '分類帳',
-        'ledgers' => '分類'
+        'ledgers' => '分類',
+        'remain' => '餘額'
     ],
     'options' => [],
 ];
