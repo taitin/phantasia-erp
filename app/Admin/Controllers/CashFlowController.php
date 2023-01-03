@@ -37,11 +37,14 @@ class CashFlowController extends AdminController
                 $grid->header('<h2>全部現金餘額: ' . $total .  '</h2>');
             }
             // $grid->column('id')->sortable();
+            $grid->column('account.name', __('account.labels.account'))->sortable();
+
             $grid->column('date')->sortable();
             $grid->column('summary')->sortable();
             $grid->column('income')->sortable();
             $grid->column('pay')->sortable();
-            $grid->column('account.name', __('account.labels.account'))->sortable();
+            $grid->column('remain')->sortable();
+
             $grid->column('comment')->sortable();
             $grid->column('ledgers')->display(function ($value) {
                 if ($this->ledgers)
