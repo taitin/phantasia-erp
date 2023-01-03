@@ -66,7 +66,7 @@ class CashFlowController extends AdminController
                 $filter->like('summary');
                 $filter->equal('account_id')->select(Account::all()->pluck('name', 'id'));
                 $filter->like('comment');
-                $filter->disableCollapse();
+                $filter->expand(false);
             });
         });
     }
