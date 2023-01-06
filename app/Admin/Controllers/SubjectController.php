@@ -19,9 +19,9 @@ class SubjectController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Subject(), function (Grid $grid) {
+        return Grid::make(new Subject(['parent']), function (Grid $grid) {
             $grid->column('name');
-            $grid->column('parent_id');
+            $grid->column('parent.name');
             $grid->column('code');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
