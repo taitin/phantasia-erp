@@ -34,7 +34,7 @@ class LedgerController extends AdminController
             $grid->column('updated_at')->sortable();
 
 
-            $grid->footer(function ($collection) use ($grid) {
+            $grid->header(function ($collection) use ($grid) {
                 $query = ModelsLedger::query();
 
                 // 拿到表格筛选 where 条件数组进行遍历
