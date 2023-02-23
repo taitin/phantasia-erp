@@ -35,6 +35,23 @@ class LedgerController extends AdminController
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
                 $filter->like('summary');
+                $filter->equal('category_id')->select(Subjects::get());
+                $filter->like('invoice');
+
+                $filter->group('income', function ($group) {
+                    $group->nlt('大於');
+                    $group->ngt('小於');
+                    $group->equal('等於');
+                });
+                $filter->group('pay', function ($group) {
+                    $group->nlt('大於');
+                    $group->ngt('小於');
+                    $group->equal('等於');
+                });
+
+
+
+                $filter->like('invoice');
             });
             // $grid->quickCreate(function ($form) {
 
