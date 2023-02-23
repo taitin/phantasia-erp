@@ -23,7 +23,7 @@ class LedgerController extends AdminController
             $grid->column('date');
             $grid->column('summary');
             $grid->column('invoice');
-            $grid->column('income');
+            $grid->column('income')->sumTotal();;
             $grid->column('pay');
             $grid->column('category_id')->display(function () {
                 return $this->subject;
@@ -32,6 +32,31 @@ class LedgerController extends AdminController
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
 
+
+            $grid->footer(function ($collection) use ($grid) {
+                $query = Model::query();
+
+                // 拿到表格筛选 where 条件数组进行遍历
+                $grid->model()->getQueries()->unique()->each(function ($value) use (&$query) {
+                    if (in_array($value['method'], ['paginate', 'get', 'orderBy', 'orderByDesc'], true)) {
+                        return;
+                    }
+
+                    $query = call_user_func_array([$query, $value['method']], $value['arguments'] ?? []);
+                });
+
+                // 查出统计数据
+                $data = $query->get();
+                $income = 0;
+                $pay = 0;
+
+                foreach ($data as $row) {
+                    $income += $row->income;
+                    $pay += $row->pay;
+                }
+
+                return "<div style='padding: 10px;'>總收入 ： $income</div><div style='padding: 10px;'>總支出 ： $pay</div>";
+            });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
                 $filter->like('summary');
