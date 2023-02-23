@@ -37,7 +37,7 @@ class LedgerController extends AdminController
                 $filter->like('summary');
                 $filter->equal('category_id')->select(Subjects::get());
                 $filter->like('invoice');
-
+                $filter->between('date')->date();
                 $filter->group('income', function ($group) {
                     $group->nlt('大於');
                     $group->ngt('小於');
