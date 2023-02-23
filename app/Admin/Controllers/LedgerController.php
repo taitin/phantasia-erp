@@ -56,7 +56,7 @@ class LedgerController extends AdminController
                     $pay += $row->pay;
                 }
 
-                return "<div style='padding: 10px;'>總收入 ： $income</div><div style='padding: 10px;'>總支出 ： $pay</div>";
+                return "<h2>總收入 ： $income 總支出 ： $pay</h2>";
             });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
