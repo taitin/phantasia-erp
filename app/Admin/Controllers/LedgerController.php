@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Ledger;
+use App\Models\Ledger as ModelsLedger;
 use App\Options\Subjects;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -34,7 +35,7 @@ class LedgerController extends AdminController
 
 
             $grid->footer(function ($collection) use ($grid) {
-                $query = Model::query();
+                $query = ModelsLedger::query();
 
                 // 拿到表格筛选 where 条件数组进行遍历
                 $grid->model()->getQueries()->unique()->each(function ($value) use (&$query) {
