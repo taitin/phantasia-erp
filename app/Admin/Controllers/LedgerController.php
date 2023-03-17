@@ -20,6 +20,7 @@ class LedgerController extends AdminController
     protected function grid()
     {
         return Grid::make(new Ledger(), function (Grid $grid) {
+            $grid->model()->orderBy('id', 'DESC');
             $grid->column('id')->sortable();
             $grid->column('date');
             $grid->column('summary');
@@ -56,7 +57,8 @@ class LedgerController extends AdminController
                     $pay += $row->pay;
                 }
 
-                return "<h2>總收入 ： $income 總支出 ： $pay</h2>";
+                $remain = $income - $pay;
+                return "<h2>總收入 ： $income 總支出 ： $pay</h2> 結餘:" . $remain;
             });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
