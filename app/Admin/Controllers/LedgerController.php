@@ -58,7 +58,7 @@ class LedgerController extends AdminController
                 }
 
                 $remain = $income - $pay;
-                return "<h2>總收入 ： $income 總支出 ： $pay</h2> 結餘:" . $remain;
+                return "<h2>總收入 ： $income 總支出 ： $pay 結餘:  $remain</h2> ";
             });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
