@@ -56,7 +56,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection invoice
-     * @property Grid\Column|Collection catagory_id
+     * @property Grid\Column|Collection category_id
      * @property Grid\Column|Collection balance
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
@@ -530,6 +530,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection transportRemarks
      * @property Grid\Column|Collection packageNumber
      * @property Grid\Column|Collection invoiceNumber
+     * @property Grid\Column|Collection sub_code
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection id(string $label = null)
@@ -577,7 +578,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection invoice(string $label = null)
-     * @method Grid\Column|Collection catagory_id(string $label = null)
+     * @method Grid\Column|Collection category_id(string $label = null)
      * @method Grid\Column|Collection balance(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
@@ -1051,6 +1052,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection transportRemarks(string $label = null)
      * @method Grid\Column|Collection packageNumber(string $label = null)
      * @method Grid\Column|Collection invoiceNumber(string $label = null)
+     * @method Grid\Column|Collection sub_code(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -1103,7 +1105,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection invoice
-     * @property Show\Field|Collection catagory_id
+     * @property Show\Field|Collection category_id
      * @property Show\Field|Collection balance
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
@@ -1577,6 +1579,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection transportRemarks
      * @property Show\Field|Collection packageNumber
      * @property Show\Field|Collection invoiceNumber
+     * @property Show\Field|Collection sub_code
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection id(string $label = null)
@@ -1624,7 +1627,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection invoice(string $label = null)
-     * @method Show\Field|Collection catagory_id(string $label = null)
+     * @method Show\Field|Collection category_id(string $label = null)
      * @method Show\Field|Collection balance(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
@@ -2098,6 +2101,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection transportRemarks(string $label = null)
      * @method Show\Field|Collection packageNumber(string $label = null)
      * @method Show\Field|Collection invoiceNumber(string $label = null)
+     * @method Show\Field|Collection sub_code(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}

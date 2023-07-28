@@ -18,4 +18,5 @@ Route::group([
     $router->resource('accounts', 'AccountController');
     $router->resource('ledgers', 'LedgerController');
     $router->resource('subjects', 'SubjectController');
+    $router->resource('subpoenas', 'SubpoenaController');
 });

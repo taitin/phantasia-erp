@@ -10,6 +10,7 @@ class Ledger extends Model
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
+    protected $guarded = ['id'];
 
 
     public function category()
