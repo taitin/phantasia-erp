@@ -9,7 +9,9 @@ return [
         'user_id' => '使用者',
         'borrow' => '借',
         'loan' => '貸',
-        'name' => '使用者名稱'
+        'name' => '使用者名稱',
+        'date' => '日期'
+
 
     ],
     'options' => [],

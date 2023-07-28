@@ -4,6 +4,8 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Extensions\Tools\OrderNumber;
 use App\Admin\Repositories\Subpoena;
+use App\Models\Ledger;
+use App\Models\Subpoena as ModelsSubpoena;
 use App\Options\Subjects;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -22,8 +24,11 @@ class SubpoenaController extends AdminController
     protected function grid()
     {
         return Grid::make(new Subpoena(['user']), function (Grid $grid) {
-            $grid->column('id')->sortable();
+            $grid->model()->orderBy('date', 'desc');
+            // $grid->column('id')->sortable();
             $grid->column('number')->sortable();
+            $grid->column('date')->sortable();
+
             $grid->column('user.name', __('subpoena.fields.name'))->sortable();
             $grid->column('borrow')->sortable();
             $grid->column('loan')->sortable();
@@ -60,6 +65,8 @@ class SubpoenaController extends AdminController
         return Show::make($id, new Subpoena(['user']), function (Show $show) {
             $show->field('id');
             $show->field('number');
+            $show->field('date');
+
             $show->field('user.name');
             $show->field('borrow');
             $show->field('loan');
@@ -75,9 +82,11 @@ class SubpoenaController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Subpoena(), function (Form $form) {
+        return Form::make(new Subpoena(['ledgers']), function (Form $form) {
             $form->display('id');
             $form->text('number')->readOnly();
+            $form->date('date')->required();
+
             $form->hidden('user_id')->default(0);
             $form->hidden('user_id')->default(0);
             $form->hidden('borrow')->default(0);
@@ -85,7 +94,7 @@ class SubpoenaController extends AdminController
 
             $form->hasMany('ledgers', __('ledger.labels.Ledger'), function (Form\NestedForm $form) {
                 $form->select('category_id', __('ledger.fields.category_id'))->options(Subjects::get())->required()->width(2);
-                $form->date('date', __('ledger.fields.date'))->width(1)->required();
+                $form->hidden('date', __('ledger.fields.date'))->width(1);
                 $form->text('summary', __('ledger.fields.summary'))->required()->width(2);
                 $form->number('income', __('ledger.fields.income'))->width(2);
                 $form->number('pay', __('ledger.fields.pay'))->width(2);
@@ -95,7 +104,7 @@ class SubpoenaController extends AdminController
             $form->submitted(function ($form) {
 
                 if ($form->isCreating()) {
-                    $form->number = OrderNumber::generate(4, 'id', 'number', 'created_at', 'subpoenas');
+                    $form->number = 'initial';
                     $form->user_id = Admin::user()->id;
                 }
                 $borrow = 0;
@@ -115,22 +124,46 @@ class SubpoenaController extends AdminController
             .table tr td:first-child{
                     width:250px;
             }
+
             .table tr td:nth-child(2) input{
-                        width:100px !important;
-                }
-            .table tr td:nth-child(3) input{
                     width:250px !important;
             }
-            .table tr td:nth-child(4) input{
+            .table tr td:nth-child(3) input{
                 width:100px !important;
         }
-        .table tr td:nth-child(5) input{
+        .table tr td:nth-child(4) input{
             width:100px !important;
     }
 
 
 STYLE;
             Admin::style($style);
+
+            $form->saved(function ($form) {
+                $id = $form->getKey();
+                $data =      ModelsSubpoena::find($id);
+                if ($data->number == 'initial') {
+                    $data->number = OrderNumber::generate(4, 'id', 'number', 'date', 'subpoenas', date('Ymd', strtotime($data->date)));
+                    $data->save();
+                }
+                $ledgers =  Ledger::where('subpoena_id', $form->model()->id)->get();
+                foreach ($ledgers as $ledger) {
+                    $ledger->date = $form->model()->date;
+                }
+            });
+
+
+
+
+
+            $form->deleted(function (Form $form, $result) {
+                $id = $form->getKey();
+                $ledgers =  Ledger::where('subpoena_id', $id)->get();
+                foreach ($ledgers as $ledger) {
+                    $ledger->delete();
+                }
+            });
+
 
 
 

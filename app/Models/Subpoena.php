@@ -22,4 +22,10 @@ class Subpoena extends Model
     {
         return $this->hasMany(Ledger::class);
     }
+
+
+    public function getDateAttribute($key)
+    {
+        return date('Y-m-d', strtotime($key));
+    }
 }
