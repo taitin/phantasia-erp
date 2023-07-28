@@ -94,11 +94,12 @@ class SubpoenaController extends AdminController
 
             $form->hasMany('ledgers', __('ledger.labels.Ledger'), function (Form\NestedForm $form) {
                 $form->select('category_id', __('ledger.fields.category_id'))->options(Subjects::get())->required()->width(2);
-                $form->hidden('date', __('ledger.fields.date'))->width(1);
+                $form->date('due_date', __('ledger.fields.due_date'))->width(1);
                 $form->text('summary', __('ledger.fields.summary'))->required()->width(2);
                 $form->number('income', __('ledger.fields.income'))->width(2);
                 $form->number('pay', __('ledger.fields.pay'))->width(2);
                 $form->text('invoice', __('ledger.fields.invoice'))->width(2);
+                $form->hidden('date', __('ledger.fields.date'))->width(1);
             })->useTable()->width(12, 0);
 
             $form->submitted(function ($form) {
@@ -124,14 +125,16 @@ class SubpoenaController extends AdminController
             .table tr td:first-child{
                     width:250px;
             }
-
             .table tr td:nth-child(2) input{
-                    width:250px !important;
-            }
-            .table tr td:nth-child(3) input{
                 width:100px !important;
         }
-        .table tr td:nth-child(4) input{
+            .table tr td:nth-child(3) input{
+                    width:250px !important;
+            }
+            .table tr td:nth-child(4) input{
+                width:100px !important;
+        }
+        .table tr td:nth-child(5) input{
             width:100px !important;
     }
 

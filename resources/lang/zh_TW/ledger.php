@@ -11,7 +11,8 @@ return [
         'pay' => '支出',
         'category_id' => '分類',
         'balance' => '平衡帳目',
-        'date' => '日期'
+        'date' => '日期',
+        'due_date' => '到期日'
     ],
     'options' => [],
 ];
