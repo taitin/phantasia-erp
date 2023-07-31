@@ -13,6 +13,8 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
+    $router->get('/get_calender', 'AccountController@getCalender');
+
     $router->resource('employee-check', 'EmployeeCheckController');
     $router->resource('cash-flows', 'CashFlowController');
     $router->resource('accounts', 'AccountController');

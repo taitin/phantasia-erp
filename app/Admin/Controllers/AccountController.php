@@ -4,10 +4,12 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Account;
 use App\Models\Account as ModelsAccount;
+use App\Models\Ledger;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Http\Request;
 
 class AccountController extends AdminController
 {
@@ -69,5 +71,41 @@ class AccountController extends AdminController
             $form->display('created_at');
             $form->display('updated_at');
         });
+    }
+
+
+
+    public function  getCalender(Request $request)
+    {
+        $ledgers = Ledger::where('due_date', '>', $request->start)
+            ->where('due_date', '<', $request->end)
+            ->orderBy('due_date', 'asc')->get();
+
+
+        $events = [];
+        $bookings = [];
+
+        foreach ($ledgers  as  $ledger) {
+            if ($ledger->pay > 0) {
+                $amount = $ledger->pay;
+                $color = '#AE0000';
+            } else {
+
+                $amount = $ledger->income;
+                $color = '#00EC00';
+            }
+            $events[] = [
+                'title' =>  '$' . number_format($amount) . ' ' . $ledger->summary,
+                'start' => $ledger->due_date,
+                'backgroundColor' => $color,
+                'url' => '#',
+                'id' => $ledger->id
+            ];
+        }
+
+        // $events =   array_merge($events);
+
+
+        return $events;
     }
 }

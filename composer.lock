@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bff182cc4f73939a7316f834cb3360e8",
+    "content-hash": "84134feaa8ad36938405a0d7d5515430",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3135,6 +3135,60 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "sparkinzy/dcat-extension-client",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sparkinzy/dcat-extension-client.git",
+                "reference": "69c2d55121a1663e11ccf464020c7851653e99f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sparkinzy/dcat-extension-client/zipball/69c2d55121a1663e11ccf464020c7851653e99f4",
+                "reference": "69c2d55121a1663e11ccf464020c7851653e99f4",
+                "shasum": ""
+            },
+            "require": {
+                "dcat/laravel-admin": "~2.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "dcat-admin": "Sparkinzy\\DcatExtensionClient\\DcatExtensionClientServiceProvider",
+                "laravel": {
+                    "providers": [
+                        "Sparkinzy\\DcatExtensionClient\\DcatExtensionClientServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sparkinzy\\DcatExtensionClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sparkinzy",
+                    "email": "sparkinzy@163.com"
+                }
+            ],
+            "description": "Dcat扩展市场",
+            "homepage": "https://github.com/sparkinzy/dcat-extension-client",
+            "keywords": [
+                "dcat-admin",
+                "extension"
+            ],
+            "support": {
+                "issues": "https://github.com/Sparkinzy/dcat-extension-client/issues",
+                "source": "https://github.com/Sparkinzy/dcat-extension-client/tree/1.0.3"
+            },
+            "time": "2022-12-12T03:35:24+00:00"
         },
         {
             "name": "spatie/eloquent-sortable",
