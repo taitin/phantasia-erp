@@ -337,6 +337,7 @@ return [
 
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
         'navbar_color' => '',
+        '​​sidebar-collapse' => true,
     ],
 
     /*
