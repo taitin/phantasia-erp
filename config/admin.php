@@ -328,7 +328,7 @@ return [
 
         'horizontal_menu' => false,
 
-        'sidebar_collapsed' => false,
+        'sidebar_collapsed' => true,
 
         // light, primary, dark
         'sidebar_style' => 'light',
@@ -337,7 +337,7 @@ return [
 
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
         'navbar_color' => '',
-        '​​sidebar-collapse' => true,
+
     ],
 
     /*
