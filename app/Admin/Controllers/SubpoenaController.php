@@ -132,10 +132,10 @@ class SubpoenaController extends AdminController
                     width:250px !important;
             }
             .table tr td:nth-child(4) input{
-                width:100px !important;
+                width:80px !important;
         }
         .table tr td:nth-child(5) input{
-            width:100px !important;
+            width:80px !important;
     }
     .table tr td:nth-child(6) input{
         width:100px !important;
