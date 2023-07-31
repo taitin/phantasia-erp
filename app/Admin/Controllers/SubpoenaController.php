@@ -123,13 +123,13 @@ class SubpoenaController extends AdminController
             });
             $style = <<<STYLE
             .table tr td:first-child{
-                    width:350px;
+                    min-width:350px;
             }
             .table tr td:nth-child(2) input{
                 width:100px !important;
         }
             .table tr td:nth-child(3) input{
-                    width:250px !important;
+                min-width:350px !important;
             }
             .table tr td:nth-child(4) input{
                 width:80px !important;
