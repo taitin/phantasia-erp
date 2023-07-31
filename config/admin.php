@@ -236,8 +236,9 @@ return [
             // enable cache or not
             'enable' => false,
             'store'  => 'file',
-        ],
 
+        ],
+        'expand' => false,
         // Whether enable menu bind to a permission.
         'bind_permission' => true,
 
