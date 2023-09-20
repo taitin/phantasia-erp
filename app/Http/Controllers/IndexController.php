@@ -23,6 +23,8 @@ class IndexController extends Controller
 
     public function report(Request $request)
     {
+        ini_set('memory_limit', '256M');
+
         if ($request->token != md5($request->date . 'phantasia')) return  abort(404);
 
         $date =  $request->date ?? date('Y-m-d');
