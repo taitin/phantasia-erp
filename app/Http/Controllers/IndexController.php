@@ -15,7 +15,7 @@ class IndexController extends Controller
     {
         $date =  $request->date ?? date('Y-m-d');
 
-        return redirect()->to(url('/report_api', ['date' => $date, 'token' => md5($date . 'phantasia')]));
+        return redirect()->to(url('/report_api?' . http_build_query(['date' => $date, 'token' => md5($date . 'phantasia')])));
     }
 
     public function report(Request $request)
