@@ -32,6 +32,10 @@
             </th>
         </tr>
         <tr>
+            <th colspan="9">銷售</th>
+        </tr>
+
+        <tr>
             <th colspan="2">科目</th>
             <th>國內</th>
             <th>國外</th>
@@ -128,8 +132,8 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="5">餘額</td>
-            <td colspan="4">支出</td>
+            <th colspan="5">餘額</th>
+            <th colspan="4">支出</th>
 
         </tr>
         <tr>
