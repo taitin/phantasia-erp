@@ -11,9 +11,16 @@ class IndexController extends Controller
 {
     //
 
+    public function reportToken(Request $request)
+    {
+        $date =  $request->date ?? date('Y-m-d');
+
+        return redirect(url('/report/api'), ['date' => $date, 'token' => md5($date . 'phantasia')]);
+    }
 
     public function report(Request $request)
     {
+        if ($request->token != md5($request->date . 'phantasia')) abort(404);
 
         $date =  $request->date ?? date('Y-m-d');
         $data['date'] = $date;

@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('/report', [IndexController::class, 'report']);
+Route::get('/report', [IndexController::class, 'reportToken']);
+Route::get('/report_api', [IndexController::class, 'report']);
