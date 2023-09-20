@@ -45,15 +45,6 @@ class IndexController extends Controller
             ->json();
 
 
-        $today_stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $date, 'shopID' => -1])
-            ->json();
-
-        $yesterday_stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $yesterday_date, 'shopID' => -1])
-            ->json();
-
-
-
-
         $data['sell']['yesterday_cost'] = 0;
         $data['sell']['yesterday_profit'] = 0;
         $data['sell']['yesterday_sell'] = 0;
@@ -62,18 +53,29 @@ class IndexController extends Controller
         $data['sell']['total_profit'] = 0;
         $data['sell']['total_sell'] = 0;
 
-        foreach ($today_stock['product'] as $product) {
+
+        $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $date, 'shopID' => -1])
+            ->json();
+
+        foreach ($stock['product'] as $product) {
 
             $data['sell']['total_cost'] +=  $product['all']['S_totalCost'];
             $data['sell']['total_profit'] +=  $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost'];
             $data['sell']['total_sell'] += $product['all']['S_totalSellPrice'];
         }
-        foreach ($yesterday_stock['product'] as $product) {
+        $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $yesterday_date, 'shopID' => -1])
+            ->json();
+
+
+        foreach ($stock['product'] as $product) {
 
             $data['sell']['yesterday_cost'] +=  $product['all']['S_totalCost'];
             $data['sell']['yesterday_profit'] +=  $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost'];
             $data['sell']['yesterday_sell'] += $product['all']['S_totalSellPrice'];
         }
+
+
+
 
         $data['sell']['today_cost'] = $data['sell']['total_cost'] - $data['sell']['yesterday_cost'];
         $data['sell']['today_profit'] = $data['sell']['total_profit'] - $data['sell']['yesterday_profit'];
