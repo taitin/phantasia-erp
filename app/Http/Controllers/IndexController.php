@@ -26,6 +26,7 @@ class IndexController extends Controller
         if ($request->token != md5($request->date . 'phantasia')) return  abort(404);
 
         $date =  $request->date ?? date('Y-m-d');
+        $mon_first = date('Y-m-01', strtotime($date));
         $data['date'] = $date;
         $yesterday_date  = date('Y-m-d', strtotime("-1 day", strtotime($date)));
 
@@ -37,12 +38,66 @@ class IndexController extends Controller
         $yesterday_m = date('m', strtotime("-1 day", strtotime($date)));
         $yesterday_d = date('d', strtotime("-1 day", strtotime($date)));
 
+
+        Http::get("https://shipment.phantasia.com.tw/product_flow/account_io_trans/$date/")
+            ->json();
+
+
+        $today_stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $date, 'shopID' => -1])
+            ->json();
+
+        $yesterday_stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $yesterday_date, 'shopID' => -1])
+            ->json();
+
+
+
+
+        $data['sell']['yesterday_cost'] = 0;
+        $data['sell']['yesterday_profit'] = 0;
+        $data['sell']['yesterday_sell'] = 0;
+
+        $data['sell']['total_cost'] = 0;
+        $data['sell']['total_profit'] = 0;
+        $data['sell']['total_sell'] = 0;
+
+        foreach ($today_stock['product'] as $product) {
+
+            $data['sell']['total_cost'] +=  $product['all']['S_totalCost'];
+            $data['sell']['total_profit'] +=  $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost'];
+            $data['sell']['total_sell'] += $product['all']['S_totalSellPrice'];
+        }
+        foreach ($yesterday_stock['product'] as $product) {
+
+            $data['sell']['yesterday_cost'] +=  $product['all']['S_totalCost'];
+            $data['sell']['yesterday_profit'] +=  $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost'];
+            $data['sell']['yesterday_sell'] += $product['all']['S_totalSellPrice'];
+        }
+
+        $data['sell']['today_cost'] = $data['sell']['total_cost'] - $data['sell']['yesterday_cost'];
+        $data['sell']['today_profit'] = $data['sell']['total_profit'] - $data['sell']['yesterday_profit'];
+        $data['sell']['today_sell'] = $data['sell']['total_sell'] - $data['sell']['yesterday_sell'];
+
         $today =  Http::get("https://shipment.phantasia.com.tw/product_flow/get_order_IO?year=$today_y&mon=$today_m&mday=$today_d&type=json")
             ->json();
+
+
+
 
         if ($today_d == '01' || $today_d == 1) $yesterday = [];
         else $yesterday =  Http::get("https://shipment.phantasia.com.tw/product_flow/get_order_IO?year=$yesterday_y&mon=$yesterday_m&mday=$yesterday_d&type=json")
             ->json();
+
+
+
+
+
+
+        //http://shipment.phantasia.com.tw/product_flow/show_all
+        /*
+            2023-09-10
+2023-9-20
+
+            */
 
 
         //safety check
@@ -53,10 +108,6 @@ class IndexController extends Controller
         $data['sell']['today_in'] = $today['orderTotal'] + $today['ecTotal'] - $data['sell']['yesterday_in'];
         $data['sell']['today_abroad'] = 0 -   $data['sell']['yesterday_abroad']; //暫時無
 
-        $data['sell']['today_cost'] = -1;
-        $data['sell']['today_profit'] = -1;
-        $data['sell']['yesterday_cost'] = -1;
-        $data['sell']['yesterday_profit'] = -1;
 
         $data['sell']['total_in'] = $data['sell']['today_in'] + $data['sell']['yesterday_in'];
         $data['sell']['total_abroad'] =   $data['sell']['today_abroad'] + $data['sell']['yesterday_abroad'];
@@ -65,7 +116,7 @@ class IndexController extends Controller
         $data['sell']['total_profit'] = $data['sell']['yesterday_profit'] + $data['sell']['today_profit'];
 
         $last_cashs = CashFlow::whereDate('date', '<=', $yesterday_date)
-            ->whereDate('date', '>=', date('Y-m-01', strtotime($yesterday_date)))
+            ->whereDate('date', '>=', $mon_first)
             ->orderBy('created_at', 'desc')
             ->get();
 

@@ -37,8 +37,8 @@
             <th>國外</th>
             <th>小計</th>
             <th></th>
-            <th>銷貨成本</th>
-            <th>銷貨毛利</th>
+            <th>銷貨成本(未稅)</th>
+            <th>銷貨毛利(未稅)</th>
             <th></th>
         </tr>
         <tr class="gray">
