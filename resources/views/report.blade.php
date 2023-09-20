@@ -68,9 +68,9 @@
         </tr>
         <tr class="gray">
             <th>今日累計</th>
-            <td>{{ number_format($sell['today_in']) }}</td>
-            <td>{{ number_format($sell['today_abroad']) }}</td>
-            <td>{{ number_format($sell['today_in'] + $sell['today_abroad']) }}</td>
+            <td>{{ number_format($sell['total_in']) }}</td>
+            <td>{{ number_format($sell['total_abroad']) }}</td>
+            <td>{{ number_format($sell['total_in'] + $sell['total_abroad']) }}</td>
             <td></td>
             <td>{{ number_format($sell['total_cost']) }}</td>
             <td>{{ number_format($sell['total_profit']) }}</td>
