@@ -18,11 +18,12 @@ class IndexController extends Controller
 
         if (Admin::user())
             return redirect()->to(url('/report_api?' . http_build_query(['date' => $date, 'token' => md5($date . 'phantasia')])));
+        return abort(404);
     }
 
     public function report(Request $request)
     {
-        if ($request->token != md5($request->date . 'phantasia')) abort(404);
+        if ($request->token != md5($request->date . 'phantasia')) return  abort(404);
 
         $date =  $request->date ?? date('Y-m-d');
         $data['date'] = $date;
