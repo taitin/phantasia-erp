@@ -128,7 +128,9 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="9"></td>
+            <td colspan="5">餘額</td>
+            <td colspan="4">支出</td>
+
         </tr>
         <tr>
             <th>銀行別存款</th>
