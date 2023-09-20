@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\CashFlow;
+use Dcat\Admin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -15,7 +16,8 @@ class IndexController extends Controller
     {
         $date =  $request->date ?? date('Y-m-d');
 
-        return redirect()->to(url('/report_api?' . http_build_query(['date' => $date, 'token' => md5($date . 'phantasia')])));
+        if (Admin::user())
+            return redirect()->to(url('/report_api?' . http_build_query(['date' => $date, 'token' => md5($date . 'phantasia')])));
     }
 
     public function report(Request $request)
