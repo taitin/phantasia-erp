@@ -134,8 +134,8 @@ class IndexController extends Controller
             ->whereDate('date', '>=', $mon_first)
             ->where(function ($query) use ($keywords) {
                 foreach ($keywords as $key => $keyword) {
-                    if ($key == 0)                    $query = $query->where('comment', 'not LIKE', '%' . $keyword . '%');
-                    else $query = $query->orWhere('comment', 'not LIKE', '%' . $keyword . '%');
+                    if ($key == 0)                    $query = $query->where('summary', 'not LIKE', '%' . $keyword . '%');
+                    else $query = $query->orWhere('summary', 'not LIKE', '%' . $keyword . '%');
                 }
             })
             ->orderBy('created_at', 'desc')
@@ -145,8 +145,8 @@ class IndexController extends Controller
         $today_cashs = CashFlow::whereDate('date', $date)
             ->where(function ($query) use ($keywords) {
                 foreach ($keywords as $key => $keyword) {
-                    if ($key == 0)                    $query = $query->where('comment', 'not LIKE', '%' . $keyword . '%');
-                    else $query = $query->orWhere('comment', 'not LIKE', '%' . $keyword . '%');
+                    if ($key == 0)                    $query = $query->where('summary', 'not LIKE', '%' . $keyword . '%');
+                    else $query = $query->orWhere('summary', 'not LIKE', '%' . $keyword . '%');
                 }
             })
             ->orderBy('created_at', 'desc')
@@ -212,9 +212,9 @@ class IndexController extends Controller
                     $handle = 0;
 
 
-                    if (!$this->containsKeyword($pay->comment, $keywords)) {
+                    if (!$this->containsKeyword($pay->summary, $keywords)) {
                         $data['pays'][] = [
-                            'name' => $pay->comment,
+                            'name' => $pay->summary,
                             'cash' => $cash,
                             'deposit' => $deposit,
                             'handle' => $handle
@@ -239,12 +239,12 @@ class IndexController extends Controller
 
             $account_last_cashes =  $last_cashs->where('account_id', $account->id)
                 ->filter(function ($model) use ($keywords) {
-                    if (!$this->containsKeyword($model->comment, $keywords)) return true;
+                    if (!$this->containsKeyword($model->summary, $keywords)) return true;
                     else return false;
                 });
             foreach ($account_last_cashes as $cash) {
 
-                dump($cash->pay . $cash->comment . $cash->date);
+                dump($cash->pay . $cash->summary . $cash->date);
             }
 
             //零用金
