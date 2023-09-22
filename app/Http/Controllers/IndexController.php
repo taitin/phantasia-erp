@@ -219,7 +219,7 @@ class IndexController extends Controller
                             'deposit' => $deposit,
                             'handle' => $handle
                         ];
-
+                        dump($cash);
                         $data['summary']['today_pay_cash'] += $cash;
                         $data['summary']['today_pay_deposit'] += $deposit;
                         $data['summary']['today_pay_handle'] += $handle;
