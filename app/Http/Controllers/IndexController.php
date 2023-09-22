@@ -242,7 +242,10 @@ class IndexController extends Controller
                     if (!$this->containsKeyword($model->comment, $keywords)) return true;
                     else return false;
                 });
-            dump($account_last_cashes);
+            foreach ($account_last_cashes as $cash) {
+
+                dump($cash->pat . $cash->comment);
+            }
 
             //零用金
             if ($account->type === 0 || $account->type == "現金") {
