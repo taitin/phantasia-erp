@@ -210,16 +210,20 @@ class IndexController extends Controller
                         $deposit = $pay->pay;
                     }
                     $handle = 0;
-                    $data['pays'][] = [
-                        'name' => $pay->comment,
-                        'cash' => $cash,
-                        'deposit' => $deposit,
-                        'handle' => $handle
-                    ];
 
-                    $data['summary']['today_pay_cash'] += $cash;
-                    $data['summary']['today_pay_deposit'] += $deposit;
-                    $data['summary']['today_pay_handle'] += $handle;
+
+                    if (!$this->containsKeyword($pay->comment, $keywords)) {
+                        $data['pays'][] = [
+                            'name' => $pay->comment,
+                            'cash' => $cash,
+                            'deposit' => $deposit,
+                            'handle' => $handle
+                        ];
+
+                        $data['summary']['today_pay_cash'] += $cash;
+                        $data['summary']['today_pay_deposit'] += $deposit;
+                        $data['summary']['today_pay_handle'] += $handle;
+                    }
                 }
             }
 
@@ -233,7 +237,12 @@ class IndexController extends Controller
                 'totay_remain' => $totay_remain
             ];
 
-            $account_last_cashes =  $last_cashs->where('account_id', $account->id);
+            $account_last_cashes =  $last_cashs->where('account_id', $account->id)
+                ->filter(function ($model) use ($keywords) {
+                    if (!$this->containsKeyword($model->comment, $keywords)) return true;
+                    else return false;
+                });
+
             //零用金
             if ($account->type === 0 || $account->type == "現金") {
                 if (!isset($data['summary']['cash'])) $data['summary']['cash'] = [
@@ -264,19 +273,21 @@ class IndexController extends Controller
         }
 
 
-        for ($i = 0; $i < 15; $i++) {
-            $data['costs'][] = [
-                'name' => '員工薪資',
-                'cash' => 1000,
-                'deposit' => 100,
-                'handle' => 100,
-            ];
-        }
-
 
 
 
 
         return view('report', $data);
+    }
+
+
+    private function containsKeyword($string, $keywords)
+    {
+        foreach ($keywords as $keyword) {
+            if (str_contains($string, $keyword)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
