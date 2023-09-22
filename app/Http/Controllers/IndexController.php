@@ -244,7 +244,7 @@ class IndexController extends Controller
                 });
             foreach ($account_last_cashes as $cash) {
 
-                dump($cash->pat . $cash->comment);
+                dump($cash->pay . $cash->comment . $cash->date);
             }
 
             //零用金
