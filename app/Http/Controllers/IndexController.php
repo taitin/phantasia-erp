@@ -126,7 +126,8 @@ class IndexController extends Controller
             '瑞興轉',
             '渣打轉',
             '永豐轉',
-            '彰銀轉'
+            '彰銀轉',
+            '零用金'
         ];
 
         $last_cashs = CashFlow::whereDate('date', '<=', $yesterday_date)
