@@ -118,14 +118,36 @@ class IndexController extends Controller
 
         $data['sell']['total_cost'] =  $data['sell']['yesterday_cost'] + $data['sell']['today_cost'];
         $data['sell']['total_profit'] = $data['sell']['yesterday_profit'] + $data['sell']['today_profit'];
+        $keywords = [
+            '中信轉',
+            '兆豐轉',
+            '玉山轉',
+            '一銀轉',
+            '瑞興轉',
+            '渣打轉',
+            '永豐轉',
+            '彰銀轉'
+        ];
 
         $last_cashs = CashFlow::whereDate('date', '<=', $yesterday_date)
             ->whereDate('date', '>=', $mon_first)
+            ->where(function ($query) use ($keywords) {
+                foreach ($keywords as $key => $keyword) {
+                    if ($key == 0)                    $query = $query->where('comment', 'not LIKE', '%' . $keyword . '%');
+                    else $query = $query->orWhere('comment', 'not LIKE', '%' . $keyword . '%');
+                }
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
 
         $today_cashs = CashFlow::whereDate('date', $date)
+            ->where(function ($query) use ($keywords) {
+                foreach ($keywords as $key => $keyword) {
+                    if ($key == 0)                    $query = $query->where('comment', 'not LIKE', '%' . $keyword . '%');
+                    else $query = $query->orWhere('comment', 'not LIKE', '%' . $keyword . '%');
+                }
+            })
             ->orderBy('created_at', 'desc')
             ->get();
 
@@ -156,37 +178,17 @@ class IndexController extends Controller
 
 
         $accounts = Account::all();
-        $keywords = [
-            '中信轉',
-            '兆豐轉',
-            '玉山轉',
-            '一銀轉',
-            '瑞興轉',
-            '渣打轉',
-            '永豐轉',
-            '彰銀轉'
-        ];
 
 
         foreach ($accounts as $account) {
             $last_cash = CashFlow::where('account_id', $account->id)
                 ->whereDate('date', '<=', $yesterday_date)
-                ->where(function ($query) use ($keywords) {
-                    foreach ($keywords as $key => $keyword) {
-                        if ($key == 0)                    $query = $query->where('comment', 'not LIKE', '%' . $keyword . '%');
-                        else $query = $query->orWhere('comment', 'not LIKE', '%' . $keyword . '%');
-                    }
-                })
+
                 ->orderBy('created_at', 'desc')
                 ->first();
             $today_cashs = CashFlow::where('account_id', $account->id)
                 ->whereDate('date', $date)
-                ->where(function ($query) use ($keywords) {
-                    foreach ($keywords as $key => $keyword) {
-                        if ($key == 0)                    $query = $query->where('comment', 'not LIKE', '%' . $keyword . '%');
-                        else $query = $query->orWhere('comment', 'not LIKE', '%' . $keyword . '%');
-                    }
-                })
+
                 ->orderBy('created_at', 'desc')
                 ->get();
 
