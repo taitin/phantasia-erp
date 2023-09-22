@@ -219,7 +219,7 @@ class IndexController extends Controller
                             'deposit' => $deposit,
                             'handle' => $handle
                         ];
-                        dump($cash);
+
                         $data['summary']['today_pay_cash'] += $cash;
                         $data['summary']['today_pay_deposit'] += $deposit;
                         $data['summary']['today_pay_handle'] += $handle;
@@ -242,6 +242,7 @@ class IndexController extends Controller
                     if (!$this->containsKeyword($model->comment, $keywords)) return true;
                     else return false;
                 });
+            dump($account_last_cashes);
 
             //零用金
             if ($account->type === 0 || $account->type == "現金") {
