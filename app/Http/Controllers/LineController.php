@@ -19,6 +19,7 @@ class LineController extends Controller
         $replyToken = $request->events[0]['replyToken'];
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'];
+        Log::debug($inputText);
         if (str_contains($inputText, '產品')) {
 
             $query = trim(str_replace('產品', '', $inputText));
