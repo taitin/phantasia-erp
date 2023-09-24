@@ -52,6 +52,7 @@ class LineController extends Controller
                 $to = date('Y-m');
                 $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/pos_io", ['from' => $from, 'to' => $to, 'productID' => $product->productID])->json();
                 $discount = round($product->buyPrice * 100 / $product->price, 0);
+                $num =  $product->currentAmount->num ?? 0;
                 $message = '品名:' . $product->ZHName . "\n";
                 $message .= '原價:' . $product->price . "\n";
                 $message .= '進價:' .  $product->buyPrice . "(" .   $discount . "%)\n";
