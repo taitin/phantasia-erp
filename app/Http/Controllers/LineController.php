@@ -19,14 +19,14 @@ class LineController extends Controller
         $replyToken = $request->events[0]['replyToken'] ?? '';
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'] ?? '';
-        //  ；  $inputText = '產品 繽紛花火';
+        $inputText = '產品 不失智';
         if (str_contains($inputText, '產品')) {
 
             $query = trim(str_replace('產品', '', $inputText));
             $products = Product::where('ZHName', 'like', "%$query%")
                 ->get();
             $message = '';
-            $max = 0;
+            $max = -1;
             $limit_num = min($products->count(), 3);
             $productIDs = [];
             $result = [];
@@ -64,7 +64,6 @@ class LineController extends Controller
             }
             if (empty($output)) $m = '查無資料';
             else $m = implode("\n", $output);
-
             $r =  (new LineService())->replyMessage($replyToken, [["message" => $m]]);
             Log::debug($r);
         }
