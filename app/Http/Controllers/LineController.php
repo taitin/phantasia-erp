@@ -16,11 +16,10 @@ class LineController extends Controller
     {
 
 
-        // $replyToken = $request->events[0]['replyToken'];
-        // $inputText = $request->events[0]['message']['text'] ?? '';
-        // $socialId = $request->events[0]['source']['userId'];
-        $inputText = '產品 繽紛花火';
-        if (str_contains('產品', $inputText)) {
+        $replyToken = $request->events[0]['replyToken'];
+        $inputText = $request->events[0]['message']['text'] ?? '';
+        $socialId = $request->events[0]['source']['userId'];
+        if (str_contains($inputText, '產品')) {
 
             $query = trim(str_replace('產品', '', $inputText));
             $products = Product::where('ZHName', 'like', "%$query%")->get();
@@ -30,7 +29,6 @@ class LineController extends Controller
                 $message .= $product->price;
             }
 
-            echo $message;
             return (new LineService())->replyMessage($replyToken, [["message" => $message]]);
         }
     }
