@@ -55,7 +55,8 @@ class LineController extends Controller
             }
 
 
-            return (new LineService())->replyMessage($replyToken, [["message" => implode("\n", $output)]]);
+            $r =  (new LineService())->replyMessage($replyToken, [["message" => implode("\n", $output)]]);
+            Log::debug($r);
         }
     }
 }
