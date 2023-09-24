@@ -15,7 +15,7 @@ class LineController extends Controller
     public function LineCallback(Request $request)
     {
 
-        $replyToken = $request->e。vents[0]['replyToken'];
+        $replyToken = $request->events[0]['replyToken'];
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'];
         if (str_contains($inputText, '產品')) {
