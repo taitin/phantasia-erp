@@ -29,6 +29,7 @@ class LineController extends Controller
                 $message .= $product->ZHName;
                 $message .= $product->price;
             }
+            Log::debug($message);
 
             return (new LineService())->replyMessage($replyToken, [["message" => $message]]);
         }
