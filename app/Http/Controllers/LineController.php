@@ -29,6 +29,7 @@ class LineController extends Controller
             $max = 0;
             $limit_num = min($products->count(), 3);
             $productIDs = [];
+            $result = [];
             for ($i = 1; $i <= $limit_num; $i++) {
                 $select_product  = [];
                 foreach ($products as $product) {
