@@ -21,3 +21,8 @@ Route::get('/', function () {
 
 Route::get('/report', [IndexController::class, 'reportToken']);
 Route::get('/report_api', [IndexController::class, 'report']);
+
+Route::get('/report/{type}', [IndexController::class, 'reportDetail']);
+
+
+Route::get('/line/callback', [IndexController::class, 'reportDetail']);

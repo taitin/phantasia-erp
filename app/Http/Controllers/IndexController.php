@@ -21,6 +21,59 @@ class IndexController extends Controller
         return abort(404);
     }
 
+    public function reportDetail(Request $request)
+    {
+        $date =  $request->date ?? date('Y-m-d');
+        $mon_first = date('Y-m-01', strtotime($date));
+        $data['date'] = $date;
+        $yesterday_date  = date('Y-m-d', strtotime("-1 day", strtotime($date)));
+
+        $today_y = date('Y', strtotime($date));
+        $today_m = date('m', strtotime($date));
+        $today_d = date('d', strtotime($date));
+
+        $yesterday_y = date('Y', strtotime("-1 day", strtotime($date)));
+        $yesterday_m = date('m', strtotime("-1 day", strtotime($date)));
+        $yesterday_d = date('d', strtotime("-1 day", strtotime($date)));
+        if ($request->using == 'today') $mon_first = $date;
+
+        switch ($request->type) {
+            case 'total_in':
+                $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $date, 'shopID' => -1])
+                    ->json();
+                foreach ($stock['product'] as $product) {
+                    if ($product['all']['S_amount'] != 0 || $product['all']['S_totalSellPrice'] != 0) {
+                        $data['list'][] = [
+                            'date' => $mon_first . '~' . $date,
+                            'summary' => ($product['inf']['ZHName'] ?? ''),
+                            'num' => $product['all']['S_amount'],
+                            'amount' => $product['all']['S_totalSellPrice'],
+                            'cost' => $product['all']['S_totalCost'],
+                            'profit' => $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost']
+                        ];
+                    }
+                }
+                break;
+            case 'total_profit':
+                $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $date, 'shopID' => -1])
+                    ->json();
+                foreach ($stock['product'] as $product) {
+                    if ($product['all']['S_amount'] != 0) {
+                        $data['list'][] = [
+                            'date' => $mon_first . '~' . $date,
+                            'summary' => ($product['inf']['ZHName'] ?? ''),
+                            'num' => $product['all']['S_amount'],
+                            'amount' => $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost']
+
+
+                        ];
+                    }
+                }
+                break;
+        }
+
+        return view('detail', $data);
+    }
     public function report(Request $request)
     {
         ini_set('memory_limit', '256M');
@@ -31,6 +84,7 @@ class IndexController extends Controller
         $mon_first = date('Y-m-01', strtotime($date));
         $data['date'] = $date;
         $yesterday_date  = date('Y-m-d', strtotime("-1 day", strtotime($date)));
+        $data['yesterday_date'] = $yesterday_date;
 
         $today_y = date('Y', strtotime($date));
         $today_m = date('m', strtotime($date));
@@ -85,7 +139,7 @@ class IndexController extends Controller
             ->json();
 
 
-
+        // dd($today);
 
         if ($today_d == '01' || $today_d == 1) $yesterday = [];
         else $yesterday =  Http::get("https://shipment.phantasia.com.tw/product_flow/get_order_IO?year=$yesterday_y&mon=$yesterday_m&mday=$yesterday_d&type=json")
@@ -106,10 +160,11 @@ class IndexController extends Controller
 
         //safety check
 
-        $data['sell']['yesterday_in'] =  ($yesterday['orderTotal'] ?? 0) + ($yesterday['ecTotal'] ?? 0);
+        $data['sell']['yesterday_in'] =  ($yesterday['orderTotal'] ?? 0);
         $data['sell']['yesterday_abroad'] = 0; //暫
 
-        $data['sell']['today_in'] = $today['orderTotal'] + $today['ecTotal'] - $data['sell']['yesterday_in'];
+
+        $data['sell']['today_in'] = $today['orderTotal']  - $data['sell']['yesterday_in'];
         $data['sell']['today_abroad'] = 0 -   $data['sell']['yesterday_abroad']; //暫時無
 
 

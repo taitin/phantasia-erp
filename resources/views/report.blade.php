@@ -43,38 +43,62 @@
             <th></th>
             <th>銷貨成本(未稅)</th>
             <th>銷貨毛利(未稅)</th>
-            <th></th>
+            <th>毛利率(未稅)</th>
         </tr>
         <tr class="gray">
             <th rowspan="3">銷貨</th>
             <th>今日小計</th>
             <td>{{ number_format($sell['today_in']) }}</td>
             <td>{{ number_format($sell['today_abroad']) }}</td>
-            <td>{{ number_format($sell['today_in'] + $sell['today_abroad']) }}</td>
+            <td><a target="_new"
+                    href="{{ url('report/total_in?using=today&date=' . $date) }}">{{ number_format($sell['today_in'] + $sell['today_abroad']) }}</a>
+            </td>
             <td></td>
             <td>{{ number_format($sell['today_cost']) }}</td>
-            <td>{{ number_format($sell['today_profit']) }}</td>
-            <td></td>
+            <td><a target="_new"
+                    href="{{ url('report/total_in?using=today&date=' . $date) }}">{{ number_format($sell['today_profit']) }}</a>
+            </td>
+            @if ($sell['today_in'] != 0)
+                <td>{{ round(($sell['today_profit'] * 105) / $sell['today_in'], 0) }}%</td>
+            @else
+                <td></td>
+            @endif
         </tr>
         <tr class="gray">
             <th>昨日累計</th>
             <td>{{ number_format($sell['yesterday_in']) }}</td>
             <td>{{ number_format($sell['yesterday_abroad']) }}</td>
-            <td>{{ number_format($sell['yesterday_in'] + $sell['yesterday_abroad']) }}</td>
+            <td><a target="_new"
+                    href="{{ url('report/total_in?date=' . $yesterday_date) }}">{{ number_format($sell['yesterday_in'] + $sell['yesterday_abroad']) }}</a>
+            </td>
             <td></td>
             <td>{{ number_format($sell['yesterday_cost']) }}</td>
-            <td>{{ number_format($sell['yesterday_profit']) }}</td>
-            <td></td>
+            <td><a target="_new"
+                    href="{{ url('report/total_in?date=' . $yesterday_date) }}">{{ number_format($sell['yesterday_profit']) }}</a>
+            </td>
+            @if ($sell['yesterday_in'] != 0)
+                <td>{{ round(($sell['yesterday_profit'] * 105) / $sell['yesterday_in'], 0) }}%</td>
+            @else
+                <td></td>
+            @endif
         </tr>
         <tr class="gray">
             <th>今日累計</th>
-            <td>{{ number_format($sell['total_in']) }}</td>
+            <td>{{ number_format($sell['total_in']) }}</a></td>
             <td>{{ number_format($sell['total_abroad']) }}</td>
-            <td>{{ number_format($sell['total_in'] + $sell['total_abroad']) }}</td>
+            <td><a target="_new"
+                    href="{{ url('report/total_in?date=' . $date) }}">{{ number_format($sell['total_in'] + $sell['total_abroad']) }}</a>
+            </td>
             <td></td>
             <td>{{ number_format($sell['total_cost']) }}</td>
-            <td>{{ number_format($sell['total_profit']) }}</td>
-            <td></td>
+            <td><a target="_new"
+                    href="{{ url('report/total_in?date=' . $date) }}">{{ number_format($sell['total_profit']) }}</a>
+            </td>
+            @if ($sell['total_in'] != 0)
+                <td>{{ round(($sell['total_profit'] * 105) / $sell['total_in'], 0) }}%</td>
+            @else
+                <td></td>
+            @endif
         </tr>
 
         <tr>
