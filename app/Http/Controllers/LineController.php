@@ -31,7 +31,8 @@ class LineController extends Controller
             }
             Log::debug($message);
 
-            return (new LineService())->replyMessage($replyToken, [["message" => $message]]);
+            $r =  (new LineService())->replyMessage($replyToken, [["message" => $message]]);
+            Log::debug($r);
         }
     }
 }
