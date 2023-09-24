@@ -32,6 +32,7 @@ class LineController extends Controller
             $result = [];
             for ($i = 1; $i <= $limit_num; $i++) {
                 $select_product  = [];
+                $max = -1;
                 foreach ($products as $product) {
                     $num =  $product->currentAmount->num ?? 0;
                     if ($num > $max) {
