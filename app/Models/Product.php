@@ -9,4 +9,10 @@ class Product extends Model
 {
     use HasFactory;
     public $table = 'pos_product';
+
+
+    public function currentAmount()
+    {
+        return $this->belongsTo(ProductCurrentAmount::class)->where('shopID', 0);
+    }
 }
