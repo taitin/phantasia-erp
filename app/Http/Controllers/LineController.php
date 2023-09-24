@@ -18,10 +18,10 @@ class LineController extends Controller
         $replyToken = $request->events[0]['replyToken'];
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'];
-
+        $inputText = '產品 繽紛花火';
         if (str_contains('產品', $inputText)) {
 
-            $query = str_replace('產品', '', $inputText);
+            $query = trim(str_replace('產品', '', $inputText));
             $products = ProductModel::where('ZHName', 'like', "%$query%")->get();
             $message = '';
             foreach ($products as $product) {
