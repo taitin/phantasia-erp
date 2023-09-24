@@ -15,10 +15,13 @@ class LineController extends Controller
     public function LineCallback(Request $request)
     {
 
+        /*
 
-        $replyToken = $request->events[0]['replyToken'];
+        $replyToken = $request->e。vents[0]['replyToken'];
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'];
+        */
+        $inputText = '產品 繽紛';
         Log::debug($inputText);
         if (str_contains($inputText, '產品')) {
 
@@ -31,6 +34,7 @@ class LineController extends Controller
                 $message .= $product->buyPrice . "\n";
                 $message .= $product->currentAmount->num . "\n";
             }
+            dd($message);
             Log::debug($message);
 
             $r =  (new LineService())->replyMessage($replyToken, [["message" => $message]]);
