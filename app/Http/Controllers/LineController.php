@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\ProductModel;
 use App\Services\LineService;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class LineController extends Controller
         if (str_contains('產品', $inputText)) {
 
             $query = trim(str_replace('產品', '', $inputText));
-            $products = ProductModel::where('ZHName', 'like', "%$query%")->get();
+            $products = Product::where('ZHName', 'like', "%$query%")->get();
             $message = '';
             foreach ($products as $product) {
                 $message .= $product->ZHName;
