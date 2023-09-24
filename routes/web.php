@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,4 @@ Route::get('/report_api', [IndexController::class, 'report']);
 Route::get('/report/{type}', [IndexController::class, 'reportDetail']);
 
 
-Route::get('/line/callback', [IndexController::class, 'reportDetail']);
+Route::get('/line/callback', [LineController::class, 'LineCallback']);
