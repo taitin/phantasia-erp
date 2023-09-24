@@ -35,6 +35,7 @@ class LineController extends Controller
                 foreach ($products as $product) {
                     $num =  $product->currentAmount->num ?? 0;
                     if ($num > $max) {
+                        $max = $num;
                         if (!in_array($product->productID, $productIDs)) {
                             $select_product = $product;
                         }
