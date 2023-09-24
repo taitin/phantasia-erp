@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ProductCurrentAmount extends Model
 {
     use HasFactory;
-    public $table = 'pos_current_amount';
+    public $table = 'pos_current_product_amount';
 }

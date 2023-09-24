@@ -29,6 +29,7 @@ class LineController extends Controller
             $products = Product::where('ZHName', 'like', "%$query%")->get();
             $message = '';
             foreach ($products as $product) {
+                $num =  $product->currentAmount->num ?? 0;
                 $message .= $product->ZHName . "\n";
                 $message .= $product->price . "\n";
                 $message .= $product->buyPrice . "\n";
