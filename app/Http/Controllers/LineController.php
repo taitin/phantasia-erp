@@ -12,8 +12,7 @@ class LineController extends Controller
     public function LineCallback(Request $request)
     {
 
-        Log::debug($request);
-        return;
+
         $replyToken = $request->events[0]['replyToken'];
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'];
