@@ -13,6 +13,6 @@ class Product extends Model
 
     public function currentAmount()
     {
-        return $this->belongsTo(ProductCurrentAmount::class)->where('shopID', 0);
+        return $this->belongsTo(ProductCurrentAmount::class, 'productID', 'productID')->where('shopID', 0);
     }
 }
