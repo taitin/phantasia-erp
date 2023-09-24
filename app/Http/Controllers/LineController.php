@@ -26,14 +26,16 @@ class LineController extends Controller
         if (str_contains($inputText, '產品')) {
 
             $query = trim(str_replace('產品', '', $inputText));
-            $products = Product::where('ZHName', 'like', "%$query%")->get();
+            $products = Product::where('ZHName', 'like', "%$query%")
+                ->orderBy('currentAmount.num', 'DESC')
+                ->get();
             $message = '';
             foreach ($products as $product) {
                 $num =  $product->currentAmount->num ?? 0;
                 $message .= $product->ZHName . "\n";
                 $message .= $product->price . "\n";
                 $message .= $product->buyPrice . "\n";
-                $message .= $product->currentAmount->num . "\n";
+                $message .=  $num . "\n";
             }
             dd($message);
             Log::debug($message);
