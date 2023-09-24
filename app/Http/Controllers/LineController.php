@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductModel;
 use App\Services\LineService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class LineController extends Controller
@@ -15,9 +16,10 @@ class LineController extends Controller
     public function LineCallback(Request $request)
     {
 
-        $replyToken = $request->events[0]['replyToken'];
+        $replyToken = $request->events[0]['replyToken'] ?? '';
         $inputText = $request->events[0]['message']['text'] ?? '';
-        $socialId = $request->events[0]['source']['userId'];
+        $socialId = $request->events[0]['source']['userId'] ?? '';
+        //  ；  $inputText = '產品 繽紛花火';
         if (str_contains($inputText, '產品')) {
 
             $query = trim(str_replace('產品', '', $inputText));
@@ -46,11 +48,16 @@ class LineController extends Controller
 
             $output = [];
             foreach ($result as $product) {
+                $from = date('Y-m', strtotime('-11 months'));
+                $to = date('Y-m');
+                $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/pos_io", ['from' => $from, 'to' => $to, 'productID' => $product->productID])->json();
                 $discount = round($product->buyPrice * 100 / $product->price, 0);
                 $message = '品名:' . $product->ZHName . "\n";
                 $message .= '原價:' . $product->price . "\n";
                 $message .= '進價:' .  $product->buyPrice . "(" .   $discount . "%)\n";
                 $message .= '數量:' .  $num . "\n";
+                $message .= '年銷:' .  ($stock['s']['sellNum'] ?? 0) . "\n";
+
                 $output[] = $message;
             }
             if (empty($output)) $m = '查無資料';
