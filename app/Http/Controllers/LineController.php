@@ -19,6 +19,7 @@ class LineController extends Controller
         $replyToken = $request->events[0]['replyToken'] ?? '';
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'] ?? '';
+        // $inputText = '產品 便攜';
         if (str_contains($inputText, '產品')) {
 
             $query = trim(str_replace('產品', '', $inputText));
@@ -63,6 +64,7 @@ class LineController extends Controller
             }
             if (empty($output)) $m = '查無資料';
             else $m = implode("\n", $output);
+            // dd($m);
             $r =  (new LineService())->replyMessage($replyToken, [["message" => $m]]);
             Log::debug($r);
         }
