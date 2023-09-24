@@ -53,9 +53,10 @@ class LineController extends Controller
                 $message .= '數量:' .  $num . "\n";
                 $output[] = $message;
             }
+            if (empty($output)) $m = '查無資料';
+            else $m = implode("\n", $output);
 
-
-            $r =  (new LineService())->replyMessage($replyToken, [["message" => implode("\n", $output)]]);
+            $r =  (new LineService())->replyMessage($replyToken, [["message" => $m]]);
             Log::debug($r);
         }
     }
