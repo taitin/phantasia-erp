@@ -117,6 +117,7 @@ class IndexController extends Controller
             $data['sell']['total_cost'] +=  $product['all']['S_totalCost'];
             $data['sell']['total_profit'] +=  $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost'];
             $data['sell']['total_sell'] += $product['all']['S_totalSellPrice'];
+            dump($data['sell']['total_sell']);
         }
         $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $yesterday_date, 'shopID' => -1])
             ->json();
