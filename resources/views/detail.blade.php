@@ -24,7 +24,7 @@
 
 <body>
 
-    <table border="1" style="width: 100%;max-width:800px">
+    <table border="1" style="width: 100%;">
         <tr>
             <th>日期</th>
             <th>摘要</th>
@@ -37,11 +37,14 @@
         @php
             $num = 0;
             $amount = 0;
+            $cost = 0;
         @endphp
         @foreach ($list as $item)
             @php
                 $num += $item['num'] ?? 1;
                 $amount += $item['amount'];
+                $cost += $item['cost'];
+
             @endphp
             <tr>
                 <td>{{ $item['date'] }}</td>
@@ -58,16 +61,32 @@
             </tr>
         @endforeach
         <tr>
+            <th>期間</th>
+            <th>總計</th>
+            <th>總數量</th>
+            <th>總金額</th>
+            <th>總成本</th>
+            <th>總毛利</th>
+            <th></th>
+
+
+        </tr>
+        <tr>
             <th>{{ $item['date'] }}</th>
             <th>總計</th>
             <th>{{ $num }}</th>
             <th>{{ $amount }}</th>
+            <th>{{ $cost }}</th>
+            <th>{{ $amount - $cost }}</th>
+
+
         </tr>
         <tr>
             <th>{{ $item['date'] }}</th>
             <th>總計</th>
             <th>{{ $num }}</th>
             <th>{{ $amount * 1.05 }}</th>
+            <th></th>
         </tr>
     </table>
 
