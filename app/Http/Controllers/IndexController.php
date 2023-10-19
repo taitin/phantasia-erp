@@ -41,6 +41,7 @@ class IndexController extends Controller
             case 'total_in':
                 $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $date, 'shopID' => -1])
                     ->json();
+                dd($stock);
                 foreach ($stock['product'] as $product) {
                     if ($product['all']['S_amount'] != 0 || $product['all']['S_totalSellPrice'] != 0) {
                         $data['list'][] = [
