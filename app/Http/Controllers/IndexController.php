@@ -117,7 +117,6 @@ class IndexController extends Controller
             $data['sell']['total_cost'] +=  $product['all']['S_totalCost'];
             $data['sell']['total_profit'] +=  $product['all']['S_totalSellPrice'] - $product['all']['S_totalCost'];
             $data['sell']['total_sell'] += $product['all']['S_totalSellPrice'];
-            dump($data['sell']['total_sell']);
         }
         $stock =  Http::asForm()->post("https://shipment.phantasia.com.tw/product_flow/show_all", ['from' => $mon_first, 'to' => $yesterday_date, 'shopID' => -1])
             ->json();
@@ -162,11 +161,11 @@ class IndexController extends Controller
 
         //safety check
 
-        $data['sell']['yesterday_in'] =  ($yesterday['orderTotal'] ?? 0);
+        $data['sell']['yesterday_in'] =  ($yesterday['yesterday_sell'] ?? 0);
         $data['sell']['yesterday_abroad'] = 0; //暫
 
 
-        $data['sell']['today_in'] = $today['orderTotal']  - $data['sell']['yesterday_in'];
+        $data['sell']['today_in'] = $today['total_sell']  - $data['sell']['yesterday_in'];
         $data['sell']['today_abroad'] = 0 -   $data['sell']['yesterday_abroad']; //暫時無
 
 
