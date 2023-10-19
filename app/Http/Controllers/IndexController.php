@@ -23,6 +23,7 @@ class IndexController extends Controller
 
     public function reportDetail(Request $request)
     {
+        ini_set('memory_limit', '2048M');
         $date =  $request->date ?? date('Y-m-d');
         $mon_first = date('Y-m-01', strtotime($date));
         $data['date'] = $date;
