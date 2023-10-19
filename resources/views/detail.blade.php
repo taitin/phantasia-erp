@@ -54,9 +54,9 @@
                 <td>{{ $item['cost'] }}</td>
                 <td>{{ $item['profit'] }}</td>
                 @if ($item['amount'] != 0)
-                    <td>{{ ($item['profit'] * 100) / $item['amount'] }}</td>
+                    <td>{{ round(($item['profit'] * 100) / $item['amount'], 2) }}%</td>
                 @else
-                    <td>{{ ($item['profit'] * 100) / $item['amount'] }}</td>
+                    <td>{{ round(($item['profit'] * 100) / $item['amount'], 2) }}%</td>
                 @endif
             </tr>
         @endforeach
@@ -78,12 +78,14 @@
             <th>{{ $amount }}</th>
             <th>{{ $cost }}</th>
             <th>{{ $amount - $cost }}</th>
+            <th>{{ round(($amount - $cost) / $amount, 2) * 100 }}%</th>
+
 
 
         </tr>
         <tr>
             <th>{{ $item['date'] }}</th>
-            <th>總計</th>
+            <th>稅後總計</th>
             <th>{{ $num }}</th>
             <th>{{ $amount * 1.05 }}</th>
             <th></th>
