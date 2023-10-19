@@ -161,11 +161,11 @@ class IndexController extends Controller
 
         //safety check
 
-        $data['sell']['yesterday_in'] =  ($yesterday['yesterday_sell'] ?? 0);
+        $data['sell']['yesterday_in'] =  ($data['sell']['yesterday_sell']  ?? 0);
         $data['sell']['yesterday_abroad'] = 0; //暫
 
 
-        $data['sell']['today_in'] = $today['total_sell']  - $data['sell']['yesterday_in'];
+        $data['sell']['today_in'] =  $data['sell']['total_sell']  - $data['sell']['yesterday_in'];
         $data['sell']['today_abroad'] = 0 -   $data['sell']['yesterday_abroad']; //暫時無
 
 
