@@ -44,7 +44,7 @@ class ApiController extends Controller
                     'memberName' => '王小姐', //會員名稱
                     'rvName' => '王姑娘', //取件人姓名
                     'rvZip' => '22060', //取件人郵遞區號
-                    'rvAddr' => '新北市板橋區南雅南路二段11-26號', //取件人地址
+                    'rvAddr' => '新北市板橋區', //取件人地址
                     'rvDTel' => '0286719616', //取件人日間電話
                     'rvNTel' => '0286719616', //取件人夜間電話
                     'rvMobile' => '0921181465', //取件人行動電話
