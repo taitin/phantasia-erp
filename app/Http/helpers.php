@@ -30,7 +30,7 @@ if (!function_exists('arrayToXml')) {
                     }
                 } else {
                     // Only create a new node if the array is not empty
-
+                    dump(['tag' => $root->tagName]);
                     $itemNode = $xml->createElement($root->tagName);
                     $root->parentNode->appendChild($itemNode);
                     arrayToXml($value, $itemNode, $xml);
