@@ -9,7 +9,7 @@ if (!function_exists('arrayToXml')) {
      * @param  mixed $xml
      * @return void
      */
-    function arrayToXml($array, DOMElement $root, DOMDocument $xml)
+    function arrayToXml($array, DOMElement $root, DOMDocument $xml, $tag = '')
     {
         foreach ($array as $key => $value) {
             $key = sanitizeElementName($key);
@@ -19,22 +19,15 @@ if (!function_exists('arrayToXml')) {
 
 
                     if (is_numeric(array_key_first($value))) {
-                        dump('in' . $key);
-
-                        $subnode = $xml->createElement($key);
-                        $root->appendChild($subnode);
-                        arrayToXml($value, $subnode, $xml);
+                        arrayToXml($value, $root, $xml, $key);
                     } else {
-                        dump($key);
-
                         $subnode = $xml->createElement($key);
                         $root->appendChild($subnode);
                         arrayToXml($value, $subnode, $xml);
                     }
                 } else {
                     // Only create a new node if the array is not empty
-                    dump(['tag' => $root->tagName]);
-                    $itemNode = $xml->createElement($root->tagName);
+                    $itemNode = $xml->createElement($tag ?? $root->tagName);
                     $root->parentNode->appendChild($itemNode);
                     arrayToXml($value, $itemNode, $xml);
                 }
