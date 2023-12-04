@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LineController;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,4 @@ Route::get('/report/{type}', [IndexController::class, 'reportDetail']);
 
 Route::any('/line/callback', [LineController::class, 'LineCallback']);
 $router->get('/api/{fun}', [ApiController::class, 'index']);
+$router->any('/api/ky_callback', [ApiController::class, 'ky_callback']);
