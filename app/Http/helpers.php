@@ -15,14 +15,17 @@ if (!function_exists('arrayToXml')) {
             $key = sanitizeElementName($key);
             if (is_array($value)) {
                 if (!is_numeric($key)) {
-                    dump(array_key_first($value));
-                    dump($key);
+
+
 
                     if (is_numeric(array_key_first($value))) {
+                        dump('in' . $key);
+
                         $subnode = $xml->createElement($key);
                         $root->appendChild($subnode);
                         arrayToXml($value, $subnode, $xml);
                     } else {
+                        dump($key);
 
                         $subnode = $xml->createElement($key);
                         $root->appendChild($subnode);
