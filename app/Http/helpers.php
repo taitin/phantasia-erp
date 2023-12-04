@@ -17,10 +17,8 @@ if (!function_exists('arrayToXml')) {
         if ($_xml === null) {
             $_xml = new DOMDocument('1.0', 'UTF-8');
             $_xml->formatOutput = true;
-            if ($rootElement != null) {
-                $root = $_xml->createElement($rootElement);
-                $_xml->appendChild($root);
-            }
+            $root = $_xml->createElement($rootElement);
+            $_xml->appendChild($root);
         }
 
         // Visit all key value pair
