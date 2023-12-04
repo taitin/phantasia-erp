@@ -15,15 +15,17 @@ if (!function_exists('arrayToXml')) {
             $key = sanitizeElementName($key);
             if (is_array($value)) {
                 if (!is_numeric($key)) {
-                    $subnode = $xml->createElement($key);
-                    $root->appendChild($subnode);
-                    arrayToXml($value, $subnode, $xml);
-                } else {
-                    // Only create a new node if the array is not empty
-                    dump(array_key_first($value));
-                    if (!empty($value) && is_numeric(array_key_first($value))) {
+                    if (is_numeric(array_key_first($value))) {
                         arrayToXml($value, $root, $xml);
                     } else {
+                        $subnode = $xml->createElement($key);
+                        $root->appendChild($subnode);
+                        arrayToXml($value, $subnode, $xml);
+                    }
+                } else {
+                    // Only create a new node if the array is not empty
+
+                    if (!empty($value)) {
                         $itemNode = $xml->createElement($root->tagName);
                         $root->parentNode->appendChild($itemNode);
                         arrayToXml($value, $itemNode, $xml);
