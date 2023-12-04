@@ -27,3 +27,4 @@ Route::get('/report/{type}', [IndexController::class, 'reportDetail']);
 
 
 Route::any('/line/callback', [LineController::class, 'LineCallback']);
+$router->get('/api/{fun}', [ApiController::class, 'index']);
