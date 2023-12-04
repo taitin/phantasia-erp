@@ -88,7 +88,7 @@ class ApiController extends Controller
 
     function ky_callback(Request $request)
     {
-
+return $request->web_return_xml;
         dump(xmlToArray($request->web_return_xml));
         dd($request->web_return_xml)
     }
