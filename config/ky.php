@@ -8,7 +8,7 @@ return [
     'attributes' => [
         'xsi:schemaLocation' => 'urn:KYYO:API:ORDER:1.0 ORDER.xsd',
         'xmlns' => 'urn:KYYO:API:ORDER:1.0',
-        'xmlns:xsi:schemaLocation' => "http://www.w3.org/2001/XMLSchema-instance"
+        'xmlns:xsi' => "http://www.w3.org/2001/XMLSchema-instance"
     ]
 
 ];
