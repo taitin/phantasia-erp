@@ -20,6 +20,7 @@ if (!function_exists('arrayToXml')) {
                         $root->appendChild($subnode);
                         arrayToXml($value, $root, $xml);
                     } else {
+                        dump($key);
                         $subnode = $xml->createElement($key);
                         $root->appendChild($subnode);
                         arrayToXml($value, $subnode, $xml);
