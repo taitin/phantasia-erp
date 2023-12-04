@@ -5,55 +5,52 @@ if (!function_exists('arrayToXml')) {
      * arrayToXml
      *
      * @param  mixed $array
-     * @param  mixed $rootElement
+     * @param  mixed $root
      * @param  mixed $xml
      * @return void
      */
-    function arrayToXml($array, $rootElement = null, $xml = null)
+    function arrayToXml($array, DOMElement $root, DOMDocument $xml)
     {
-        $_xml = $xml;
+        foreach ($array as $key => $value) {
+            $key = sanitizeElementName($key);
 
-        // If there is no Root Element then insert root
-        if ($_xml === null) {
-            $_xml = new DOMDocument('1.0', 'UTF-8');
-            $_xml->formatOutput = true;
-        }
-        $set_root = false;
-        if ($rootElement !== null) {
-            $root = $_xml->createElement($rootElement);
-        } else $root = null;
-        // Visit all key value pair
-        foreach ($array as $k => $v) {
-            // If there is nested array then
-            if (is_array($v)) {
-                // Call function for nested array
-                if (!is_numeric($k)) {
-                    $key = $k;
-                    if (!$set_root) {
-                        $_xml->appendChild($root);
-                        $set_root = true;
-                    }
-                    $root->appendChild(arrayToXml($v, $key));
+            if (is_array($value)) {
+                if (!is_numeric($key)) {
+                    $subnode = $xml->createElement($key);
+                    $root->appendChild($subnode);
+                    arrayToXml($value, $subnode, $xml);
                 } else {
-
-                    $key = $rootElement;
-                    $_xml->appendChild(arrayToXml($v, $key));
+                    arrayToXml($value, $root, $xml);
                 }
             } else {
-                if (!$set_root) {
-                    $_xml->appendChild($root);
-                    $set_root = true;
-                }
-
-                // Simply add child element.
-                if (!empty($root)) $_xml->appendChild($_xml->createElement($k, $v));
-                else  $root->appendChild($_xml->createElement($k, $v));
+                $value = ($value === null) ? 'NULL' : $value; // Handle NULL values
+                $element = $xml->createElement($key, htmlspecialchars($value));
+                $root->appendChild($element);
             }
         }
-
-        return $_xml->saveXML();
     }
 }
+if (!function_exists('convertArrayToXml')) {
+
+    /**
+     * convertArrayToXml
+     *
+     * @param  mixed $data
+     * @param  mixed $rootElement
+     * @return void
+     */
+    function convertArrayToXml($data, $rootElement = 'root')
+    {
+        $xml = new DOMDocument('1.0', 'UTF-8');
+        $xml->formatOutput = true;
+        $root = $xml->createElement($rootElement);
+        $xml->appendChild($root);
+        arrayToXml($data, $root, $xml);
+        return $xml->saveXML();
+    }
+}
+
+
 
 if (!function_exists('sanitizeElementName')) {
     /**
