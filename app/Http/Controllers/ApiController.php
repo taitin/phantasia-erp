@@ -30,58 +30,67 @@ class ApiController extends Controller
         $data = [
             'APIKey' => config('ky.APIKey'),
             'cusID' => config('ky.cusID'),
-            'rtURL' => 'https://erp.phantasia.com.tw/api/ky_callback'
+            'rtURL' => 'https://erp.phantasia.com.tw/api/ky_callback',
+            'cusName' => config('ky.cusName'),
+            'package' =>
+            [
+                'main' =>
+                [
+                    'serviceType' => 3, //服務類別 1:取貨付款(店配) / 代收貨款(宅配) 3:取貨不付款(店配) / 一般配送(宅配、海外)
+                    'orderID' => 'AT20230810111452', //訂單號碼
+                    'shippingID' => 'BT20230810111452', //出貨單號 若無出貨單號，請填入訂單號碼
+                    'orderAmount' => '999', //代收金額 或包裹價值
+                    'memberID' => 'M001', //會員編號
+                    'memberName' => '王小姐', //會員名稱
+                    'rvName' => '王姑娘', //取件人姓名
+                    'rvZip' => '', //取件人郵遞區號
+                    'rvAddr' => '', //取件人地址
+                    'rvDTel' => '', //取件人日間電話
+                    'rvNTel' => '', //取件人夜間電話
+                    'rvMobile' => '', //取件人行動電話
+                    'stType' => '', //取件門市通路  S11:統一超商 F:全家
+                    'stCode' => '', //取件門市代碼
+                    'stName' => '', //取件門市名稱
+                    'supplierID' => '', //供應商代號
+                    'supplierEmail' => '', //供應商電子郵件
+                    'packageLength' => NULL,
+                    'packageWidth' => NULL,
+                    'packageHeight' => NULL,
+                    'packageWeight' => NULL,
+                    'deliveryCountry' => NULL,
+                    'invoiceTitle' => NULL
+                ],
+                'detail' => [
+                    'ProductItem' =>
+                    [
+                        [
+                            'prodID' => 'P1234', //商品編號
+                            'prodName' => 'LED 白光 10W 燈泡', //品名
+                            'prodQty' => '3', //數量
+                            'prodPrice' => NULL, //單價
+                            'prodExpiryDate' => NULL, //商品指定效期
+                            'delSheetRemark' => '易碎品', //出貨單
+                        ],
+                        [
+                            'prodID' => 'P1234', //商品編號
+                            'prodName' => 'LED 白光 10W 燈泡', //品名
+                            'prodQty' => '3', //數量
+                            'prodPrice' => NULL, //單價
+                            'prodExpiryDate' => NULL, //商品指定效期
+                            'delSheetRemark' => '易碎品', //出貨單
+                        ]
 
 
+                    ]
+
+                ]
+
+            ]
         ];
 
         $data['xml'] = arrayToXml($data, 'order');
         $data['url'] =  config('ky.url');
-        $data['xml'] = '<?xml version="1.0" encoding="UTF-8"?>
-        <order xsi:schemaLocation="urn:KYYO:API:ORDER:1.0 ORDER.xsd" xmlns="urn:KYYO:API:ORDER:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <APIKey>2bf3b310eed75465b22b9d2a2c939654</APIKey>
-        <cusID>77011</cusID>
-        <cusName>四五六好人網</cusName>
-        <package>
-        <main>
-        <serviceType>3</serviceType>
-        <orderType>A01</orderType>
-        <orderID>AT20230810111452</orderID>
-        <shippingID>BT20230810111452</shippingID>
-        <orderAmount>999</orderAmount>
-        <memberID>M001</memberID>
-        <memberName>王小姐</memberName>
-        <rvName>王姑娘</rvName>
-        <rvZip></rvZip>
-        <rvAddr></rvAddr>
-        <rvDTel></rvDTel>
-        <rvNTel></rvNTel>
-        <rvMobile>0911000000</rvMobile>
-        <stType>F</stType>
-        <stCode>11783</stCode>
-        <stName>全家三重新福田店</stName>
-        <supplierID>S123</supplierID>
-        <supplierEmail>S123@abc.com.tw</supplierEmail>
-        <packageLength></packageLength>
-        <packageWidth></packageWidth>
-        <packageHeight></packageHeight>
-        <packageWeight></packageWeight>
-        <deliveryCountry></deliveryCountry>
-        <invoiceTitle></invoiceTitle>
-        <rtURL>https://erp.phantasia.com.tw/api/ky_callback</rtURL>
-        </main>
-        <detail>
-        <ProductItem>
-        <prodID>P1234</prodID>
-        <prodName>LED 白光 10W 燈泡</prodName>
-        <prodQty>3</prodQty>
-        <prodPrice></prodPrice>
-        <prodExpiryDate></prodExpiryDate>
-        <delSheetRemark>易碎品</delSheetRemark>
-        </ProductItem>
-        </detail>
-        </package>
-        </order>';
+
         return view('xml', $data);
     }
 
@@ -89,6 +98,5 @@ class ApiController extends Controller
     function ky_callback(Request $request)
     {
         dump(xmlToArray($request->web_return_xml));
-        dd($request->web_return_xml);
     }
 }
