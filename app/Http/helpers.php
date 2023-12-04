@@ -20,9 +20,12 @@ if (!function_exists('arrayToXml')) {
                     $root->appendChild($subnode);
                     arrayToXml($value, $subnode, $xml);
                 } else {
-                    $itemNode = $xml->createElement($root->tagName);
-                    $root->parentNode->appendChild($itemNode);
-                    arrayToXml($value, $itemNode, $xml);
+                    // Only create a new node if the array is not empty
+                    if (!empty($value)) {
+                        $itemNode = $xml->createElement($root->tagName);
+                        $root->parentNode->appendChild($itemNode);
+                        arrayToXml($value, $itemNode, $xml);
+                    }
                 }
             } else {
                 $value = ($value === null) ? 'NULL' : $value; // Handle NULL values
