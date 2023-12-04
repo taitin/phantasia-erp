@@ -27,11 +27,18 @@ if (!function_exists('arrayToXml')) {
             // If there is nested array then
             if (is_array($v)) {
                 // Call function for nested array
-                if (!is_numeric($k)) $key = $k;
-                else $key = $rootElement;
-                if (!empty($root))
-                    arrayToXml($v, $key, $root);
-                else  arrayToXml($v, $key, $_xml);
+                if (!is_numeric($k)) {
+                    $key = $k;
+                    if (!$set_root) {
+                        $_xml->appendChild($root);
+                        $set_root = true;
+                    }
+                    $root->appendChild(arrayToXml($v, $key));
+                } else {
+
+                    $key = $rootElement;
+                    $_xml->appendChild(arrayToXml($v, $key));
+                }
             } else {
                 if (!$set_root) {
                     $_xml->appendChild($root);
@@ -39,7 +46,7 @@ if (!function_exists('arrayToXml')) {
                 }
 
                 // Simply add child element.
-                if (!isset($root)) $_xml->appendChild($_xml->createElement($k, $v));
+                if (!empty($root)) $_xml->appendChild($_xml->createElement($k, $v));
                 else  $root->appendChild($_xml->createElement($k, $v));
             }
         }
