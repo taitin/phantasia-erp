@@ -13,7 +13,7 @@ if (!function_exists('arrayToXml')) {
     {
         foreach ($array as $key => $value) {
             $key = sanitizeElementName($key);
-
+            dump($value);
             if (is_array($value)) {
                 if (!is_numeric($key)) {
                     $subnode = $xml->createElement($key);
