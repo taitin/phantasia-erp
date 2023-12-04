@@ -37,7 +37,7 @@ class ApiController extends Controller
 
         $data['xml'] = arrayToXml($data, 'order');
         $data['url'] =  config('ky.url');
-        $str = '<?xml version="1.0" encoding="UTF-8"?>
+        $data['xml'] = '<?xml version="1.0" encoding="UTF-8"?>
         <order xsi:schemaLocation="urn:KYYO:API:ORDER:1.0 ORDER.xsd" xmlns="urn:KYYO:API:ORDER:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <APIKey>2bf3b310eed75465b22b9d2a2c939654</APIKey>
         <cusID>77011</cusID>
