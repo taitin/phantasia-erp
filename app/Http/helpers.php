@@ -21,7 +21,7 @@ if (!function_exists('arrayToXml')) {
         $set_root = false;
         if ($rootElement !== null) {
             $root = $_xml->createElement($rootElement);
-        }
+        } else $root = null;
         // Visit all key value pair
         foreach ($array as $k => $v) {
             // If there is nested array then
@@ -29,7 +29,9 @@ if (!function_exists('arrayToXml')) {
                 // Call function for nested array
                 if (!is_numeric($k)) $key = $k;
                 else $key = $rootElement;
-                arrayToXml($v, $key, $_xml);
+                if (!empty($root))
+                    arrayToXml($v, $key, $root);
+                else  arrayToXml($v, $key, $_xml);
             } else {
                 if (!$set_root) {
                     $_xml->appendChild($root);
