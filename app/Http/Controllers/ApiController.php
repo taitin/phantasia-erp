@@ -89,8 +89,61 @@ class ApiController extends Controller
         ];
 
         $data['xml'] = convertArrayToXml($data, 'order');
+        $dara['xml'] = '
+        <?xml version="1.0" encoding="UTF-8"?>
+        <order xsi:schemaLocation="urn:KYYO:API:ORDER:1.0 ORDER.xsd" xmlns="urn:KYYO:API:ORDER:1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <APIKey>2bf3b310eed75465b22b9d2a2c939654</APIKey>
+          <cusID>77011</cusID>
+          <cusName>幻遊天下股份有限公司</cusName>
+          <package>
+            <main>
+              <serviceType>1</serviceType>
+              <orderID>1701693228</orderID>
+              <shippingID>1701693228</shippingID>
+              <orderAmount>999</orderAmount>
+              <memberID>M001</memberID>
+              <memberName>王小姐</memberName>
+              <rvName>王姑娘</rvName>
+              <rvZip/>
+              <rvAddr>新北市板橋區南雅南路二段11-26號</rvAddr>
+              <rvDTel>0921181465</rvDTel>
+              <rvNTel>0921181465</rvNTel>
+              <rvMobile>0921181465</rvMobile>
+              <stType/>
+              <stCode/>
+              <stName/>
+              <supplierID/>
+              <supplierEmail/>
+              <packageLength>NULL</packageLength>
+              <packageWidth>NULL</packageWidth>
+              <packageHeight>NULL</packageHeight>
+              <packageWeight>NULL</packageWeight>
+              <deliveryCountry>NULL</deliveryCountry>
+              <invoiceTitle>NULL</invoiceTitle>
+              <rtURL>https://erp.phantasia.com.tw/api/ky_callback</rtURL>
+            </main>
+            <detail>
+              <ProductItem>
+                <prodID>P1234</prodID>
+                <prodName>LED 白光 10W 燈泡</prodName>
+                <prodQty>3</prodQty>
+                <prodPrice>NULL</prodPrice>
+                <prodExpiryDate>NULL</prodExpiryDate>
+                <delSheetRemark>易碎品</delSheetRemark>
+              </ProductItem>
+              <ProductItem>
+                <prodID>P1234</prodID>
+                <prodName>LED 白光 10W 燈泡</prodName>
+                <prodQty>3</prodQty>
+                <prodPrice>NULL</prodPrice>
+                <prodExpiryDate>NULL</prodExpiryDate>
+                <delSheetRemark>易碎品</delSheetRemark>
+              </ProductItem>
+            </detail>
+          </package>
+        </order>';
         $data['url'] =  config('ky.url');
-        return  $data['xml'];
+        // return  $data['xml'];
         return view('xml', $data);
     }
 
