@@ -68,7 +68,7 @@ class ApiController extends Controller
         <packageWeight></packageWeight>
         <deliveryCountry></deliveryCountry>
         <invoiceTitle></invoiceTitle>
-        <rtURL>https://ky.astertech.com.tw/order_api/ky_return_xml.jsp</rtURL>
+        <rtURL>https://erp.phantasia.com.tw/api/ky_callback</rtURL>
         </main>
         <detail>
         <ProductItem>
