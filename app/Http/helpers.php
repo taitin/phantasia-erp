@@ -18,8 +18,10 @@ if (!function_exists('arrayToXml')) {
             $_xml = new DOMDocument('1.0', 'UTF-8');
             $_xml->formatOutput = true;
         }
-        $root = $_xml->createElement($rootElement);
-        $_xml->appendChild($root);
+        if ($rootElement !== null) {
+            $root = $_xml->createElement($rootElement);
+            $_xml->appendChild($root);
+        }
         // Visit all key value pair
         foreach ($array as $k => $v) {
             // If there is nested array then
@@ -28,6 +30,7 @@ if (!function_exists('arrayToXml')) {
                 arrayToXml($v, $k, $_xml);
             } else {
                 // Simply add child element.
+                if ($root == null) $_xml->appendChild($_xml->createElement($k, $v));
                 $root->appendChild($_xml->createElement($k, $v));
             }
         }

@@ -61,28 +61,27 @@ class ApiController extends Controller
                     'rtURL' => 'https://erp.phantasia.com.tw/api/ky_callback',
 
                 ],
-                'rootElement' => [
-                    // 'ProductItem' =>
-                    // [
-                    //     [
-                    //         'prodID' => 'P1234', //商品編號
-                    //         'prodName' => 'LED 白光 10W 燈泡', //品名
-                    //         'prodQty' => '3', //數量
-                    //         'prodPrice' => NULL, //單價
-                    //         'prodExpiryDate' => NULL, //商品指定效期
-                    //         'delSheetRemark' => '易碎品', //出貨單
-                    //     ],
-                    //     [
-                    //         'prodID' => 'P1234', //商品編號
-                    //         'prodName' => 'LED 白光 10W 燈泡', //品名
-                    //         'prodQty' => '3', //數量
-                    //         'prodPrice' => NULL, //單價
-                    //         'prodExpiryDate' => NULL, //商品指定效期
-                    //         'delSheetRemark' => '易碎品', //出貨單
-                    //     ]
+                'detail' => [
+                    'ProductItem' =>
+                    [
+                        [
+                            'prodID' => 'P1234', //商品編號
+                            'prodName' => 'LED 白光 10W 燈泡', //品名
+                            'prodQty' => '3', //數量
+                            'prodPrice' => NULL, //單價
+                            'prodExpiryDate' => NULL, //商品指定效期
+                            'delSheetRemark' => '易碎品', //出貨單
+                        ],
+                        [
+                            'prodID' => 'P1234', //商品編號
+                            'prodName' => 'LED 白光 10W 燈泡', //品名
+                            'prodQty' => '3', //數量
+                            'prodPrice' => NULL, //單價
+                            'prodExpiryDate' => NULL, //商品指定效期
+                            'delSheetRemark' => '易碎品', //出貨單
+                        ]
 
-
-                    // ]
+                    ]
 
                 ]
 
