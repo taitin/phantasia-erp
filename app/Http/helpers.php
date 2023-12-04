@@ -29,7 +29,7 @@ if (!function_exists('arrayToXml')) {
                 // Call function for nested array
                 if (!is_numeric($k)) $key = $k;
                 else $key = $rootElement;
-                arrayToXml($v, $k, $_xml);
+                arrayToXml($v, $key, $_xml);
             } else {
                 if (!$set_root) {
                     $_xml->appendChild($root);
