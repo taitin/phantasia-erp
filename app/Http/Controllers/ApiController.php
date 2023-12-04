@@ -30,7 +30,6 @@ class ApiController extends Controller
         $data = [
             'APIKey' => config('ky.APIKey'),
             'cusID' => config('ky.cusID'),
-            'rtURL' => 'https://erp.phantasia.com.tw/api/ky_callback',
             'cusName' => config('ky.cusName'),
             'package' =>
             [
@@ -58,32 +57,34 @@ class ApiController extends Controller
                     'packageHeight' => NULL,
                     'packageWeight' => NULL,
                     'deliveryCountry' => NULL,
-                    'invoiceTitle' => NULL
+                    'invoiceTitle' => NULL,
+                    'rtURL' => 'https://erp.phantasia.com.tw/api/ky_callback',
+
                 ],
-                // 'detail' => [
-                //     'ProductItem' =>
-                //     [
-                //         [
-                //             'prodID' => 'P1234', //商品編號
-                //             'prodName' => 'LED 白光 10W 燈泡', //品名
-                //             'prodQty' => '3', //數量
-                //             'prodPrice' => NULL, //單價
-                //             'prodExpiryDate' => NULL, //商品指定效期
-                //             'delSheetRemark' => '易碎品', //出貨單
-                //         ],
-                //         [
-                //             'prodID' => 'P1234', //商品編號
-                //             'prodName' => 'LED 白光 10W 燈泡', //品名
-                //             'prodQty' => '3', //數量
-                //             'prodPrice' => NULL, //單價
-                //             'prodExpiryDate' => NULL, //商品指定效期
-                //             'delSheetRemark' => '易碎品', //出貨單
-                //         ]
+                'detail' => [
+                    'ProductItem' =>
+                    [
+                        [
+                            'prodID' => 'P1234', //商品編號
+                            'prodName' => 'LED 白光 10W 燈泡', //品名
+                            'prodQty' => '3', //數量
+                            'prodPrice' => NULL, //單價
+                            'prodExpiryDate' => NULL, //商品指定效期
+                            'delSheetRemark' => '易碎品', //出貨單
+                        ],
+                        [
+                            'prodID' => 'P1234', //商品編號
+                            'prodName' => 'LED 白光 10W 燈泡', //品名
+                            'prodQty' => '3', //數量
+                            'prodPrice' => NULL, //單價
+                            'prodExpiryDate' => NULL, //商品指定效期
+                            'delSheetRemark' => '易碎品', //出貨單
+                        ]
 
 
-                //     ]
+                    ]
 
-                // ]
+                ]
 
             ]
         ];

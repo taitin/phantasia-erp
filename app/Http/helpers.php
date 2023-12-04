@@ -28,7 +28,7 @@ if (!function_exists('arrayToXml')) {
             // If there is nested array then
             if (is_array($v)) {
                 // Call function for nested array
-                arrayToXml($v, $k, $_xml->documentElement);
+                arrayToXml($v, $k, $_xml);
             } else {
                 // Simply add child element.
                 $root->appendChild($_xml->createElement($k, $v));
