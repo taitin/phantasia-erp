@@ -16,9 +16,8 @@ if (!function_exists('arrayToXml')) {
             if (is_array($value)) {
                 if (!is_numeric($key)) {
 
-
-
                     if (is_numeric(array_key_first($value))) {
+                        dump($root->tagName);
                         arrayToXml($value, $root, $xml, $key);
                     } else {
                         $subnode = $xml->createElement($key);
