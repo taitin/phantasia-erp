@@ -17,7 +17,6 @@ if (!function_exists('arrayToXml')) {
                 if (!is_numeric($key)) {
 
                     if (is_numeric(array_key_first($value))) {
-                        dump($root->tagName);
                         arrayToXml($value, $root, $xml, $key);
                     } else {
                         $subnode = $xml->createElement($key);
@@ -27,7 +26,7 @@ if (!function_exists('arrayToXml')) {
                 } else {
                     // Only create a new node if the array is not empty
                     $itemNode = $xml->createElement($tag ?? $root->tagName);
-                    $root->parentNode->appendChild($itemNode);
+                    $root->appendChild($itemNode);
                     arrayToXml($value, $itemNode, $xml);
                 }
             } else {
