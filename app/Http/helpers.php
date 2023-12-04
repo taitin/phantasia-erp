@@ -46,14 +46,15 @@ if (!function_exists('convertArrayToXml')) {
      * @param  mixed $rootElement
      * @return void
      */
-    function convertArrayToXml($data, $rootElement = 'root')
+    function convertArrayToXml($data, $rootElement = 'root', $attributes = [])
     {
         $xml = new DOMDocument('1.0', 'UTF-8');
         $xml->formatOutput = true;
         $root = $xml->createElement($rootElement);
-        $root->setAttribute('xsi:schemaLocation', 'urn:KYYO:API:ORDER:1.0 ORDER.xsd');
-        $root->setAttribute('xmlns', 'urn:KYYO:API:ORDER:1.0');
-        $root->setAttribute('xmlns:xsi:schemaLocation', "http://www.w3.org/2001/XMLSchema-instance");
+        foreach ($attributes as $key => $attribute) {
+            $root->setAttribute($key, $attribute);
+        }
+
 
         $xml->appendChild($root);
         arrayToXml($data, $root, $xml);
