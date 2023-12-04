@@ -18,17 +18,24 @@ if (!function_exists('arrayToXml')) {
             $_xml = new DOMDocument('1.0', 'UTF-8');
             $_xml->formatOutput = true;
         }
-        if ($rootElement !== null && !is_numeric($rootElement)) {
+        $set_root = false;
+        if ($rootElement !== null) {
             $root = $_xml->createElement($rootElement);
-            $_xml->appendChild($root);
         }
         // Visit all key value pair
         foreach ($array as $k => $v) {
             // If there is nested array then
             if (is_array($v)) {
                 // Call function for nested array
+                if (!is_numeric($k)) $key = $k;
+                else $key = $rootElement;
                 arrayToXml($v, $k, $_xml);
             } else {
+                if (!$set_root) {
+                    $_xml->appendChild($root);
+                    $set_root = true;
+                }
+
                 // Simply add child element.
                 if (!isset($root)) $_xml->appendChild($_xml->createElement($k, $v));
                 else  $root->appendChild($_xml->createElement($k, $v));
