@@ -31,7 +31,7 @@ if (!function_exists('arrayToXml')) {
             } else {
                 // Simply add child element.
                 if (!isset($root)) $_xml->appendChild($_xml->createElement($k, $v));
-                $root->appendChild($_xml->createElement($k, $v));
+                else  $root->appendChild($_xml->createElement($k, $v));
             }
         }
 
