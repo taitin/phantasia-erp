@@ -13,7 +13,6 @@ if (!function_exists('arrayToXml')) {
     {
         foreach ($array as $key => $value) {
             $key = sanitizeElementName($key);
-            dump($value);
             if (is_array($value)) {
                 if (!is_numeric($key)) {
                     $subnode = $xml->createElement($key);
@@ -21,6 +20,7 @@ if (!function_exists('arrayToXml')) {
                     arrayToXml($value, $subnode, $xml);
                 } else {
                     // Only create a new node if the array is not empty
+                    dump(array_key_first($value));
                     if (!empty($value) && is_numeric(array_key_first($value))) {
                         arrayToXml($value, $root, $xml);
                     } else {
