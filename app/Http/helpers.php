@@ -18,7 +18,7 @@ if (!function_exists('arrayToXml')) {
             $_xml = new DOMDocument('1.0', 'UTF-8');
             $_xml->formatOutput = true;
         }
-        if ($rootElement !== null) {
+        if ($rootElement !== null && !is_numeric($rootElement)) {
             $root = $_xml->createElement($rootElement);
             $_xml->appendChild($root);
         }
