@@ -21,7 +21,7 @@ if (!function_exists('arrayToXml')) {
                     if (is_numeric(array_key_first($value))) {
                         $subnode = $xml->createElement($key);
                         $root->appendChild($subnode);
-                        arrayToXml($value, $root, $xml);
+                        arrayToXml($value, $subnode, $xml);
                     } else {
 
                         $subnode = $xml->createElement($key);
