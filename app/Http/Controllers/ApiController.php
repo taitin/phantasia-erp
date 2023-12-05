@@ -44,7 +44,7 @@ class ApiController extends Controller
                     'memberName' => '王小姐', //會員名稱
                     'rvName' => '王姑娘', //取件人姓名
                     'rvZip' => '22060', //取件人郵遞區號
-                    'rvAddr' => '新北市板橋區', //取件人地址
+                    'rvAddr' => '新北市板橋區南雅南路二段11-26號', //取件人地址
                     'rvDTel' => '0286719616', //取件人日間電話
                     'rvNTel' => '0286719616', //取件人夜間電話
                     'rvMobile' => '0921181465', //取件人行動電話
@@ -53,12 +53,12 @@ class ApiController extends Controller
                     'stName' => '', //取件門市名稱
                     'supplierID' => '', //供應商代號
                     'supplierEmail' => '', //供應商電子郵件
-                    'packageLength' => NULL,
-                    'packageWidth' => NULL,
-                    'packageHeight' => NULL,
-                    'packageWeight' => NULL,
-                    'deliveryCountry' => NULL,
-                    'invoiceTitle' => NULL,
+                    'packageLength' => '',
+                    'packageWidth' => '',
+                    'packageHeight' => '',
+                    'packageWeight' => '',
+                    'deliveryCountry' => '',
+                    'invoiceTitle' => '',
                     'rtURL' => 'https://erp.phantasia.com.tw/api/ky_callback',
 
                 ],
@@ -92,6 +92,7 @@ class ApiController extends Controller
         $data['xml'] = convertArrayToXml($data, 'order', config('ky.attributes'));
 
         $data['url'] =  config('ky.url');
+        if ($request->show_xml)        return   $data['xml'];
         return view('xml', $data);
     }
 
