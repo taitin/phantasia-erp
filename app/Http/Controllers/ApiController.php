@@ -24,7 +24,7 @@ class ApiController extends Controller
     public function test()
     {
 
-        $contents = Storage::disk('ftp')->get('2023-12-07-status.txt');
+        $contents = Storage::disk('ftp')->get('RTFile/2023-12-07-status.txt');
         dd($contents);
     }
     public function ky_order(Request $request)
