@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EcOrder;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,8 +25,23 @@ class ApiController extends Controller
     public function test()
     {
 
-        $contents = Storage::disk('ftp')->get('RTFile/2023-12-07-status.txt');
-        dd($contents);
+        $path = 'RTFile/2023-12-07-status.txt';
+        if (File::exists($path)) {
+            // 打開檔案進行讀取
+            $file = fopen($path, "r");
+
+            // 逐行讀取檔案內容
+            while (!feof($file)) {
+                $line = fgets($file);
+                // 處理每一行的內容，例如輸出
+                echo $line . "<br>";
+            }
+
+            // 關閉檔案
+            fclose($file);
+        } else {
+            echo "檔案不存在";
+        }
     }
     public function ky_order(Request $request)
     {
