@@ -54,17 +54,17 @@ class ApiController extends Controller
             $ec = EcOrder::where('orderID', $orderID)->first();
             if ($ec->transportID == 2) //宅配
             {
-                $orderType = 'A05';
+                $orderType = 'A06';
             } elseif (in_array($ec->transportID, [3, 4])) {
                 //7-11 ezship 先自取
-                $orderType = 'A05';
+                $orderType = 'A06';
                 $rvName = '林俊廷';
                 $rvZip = '23159';
                 $rvAddr = '自取';
                 $rvDTel = '0921181465';
             } elseif (in_array($ec->transportID, [7])) {
                 //全家
-                $orderType = 'A01';
+                $orderType = 'A02';
 
                 $address = explode(',', $ec->receiverAddress);
                 $stType = 'F';
