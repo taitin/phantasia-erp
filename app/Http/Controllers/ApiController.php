@@ -56,14 +56,20 @@ class ApiController extends Controller
                 } else {
                     $ky =  $stock[1];
                 }
-                if ($num != $ky) {
-                    $err[$stock[0]] = [
-                        'phantasia' => $num,
-                        'ky' => $ky,
-                        'name' => $product->ZHName ?? '',
-                        'productNum' => $stock[0] ?? '',
-                    ];
-                } else {
+
+                $n =  $err[$stock[0]]['n'] ?? 0;
+                $b =  $err[$stock[0]]['b'] ?? 0;
+
+                $err[$stock[0]] = [
+                    'phantasia' => $num,
+                    'ky' => $ky,
+                    'n' => str_contains('n', $stock[2]) ? $stock[1] : $n,
+                    'b' => str_contains('b', $stock[2]) ? $stock[1] : $b,
+                    'name' => $product->ZHName ?? '',
+                    'productNum' => $stock[0] ?? '',
+                ];
+
+                if ($num == $ky) {
                     if (isset($err[$stock[0]])) unset($err[$stock[0]]);
                 }
             }
