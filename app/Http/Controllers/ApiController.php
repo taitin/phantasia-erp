@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Shipment;
 use DateInterval;
 use DateTime;
+use Dcat\Admin\Widgets\Table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -64,7 +65,8 @@ class ApiController extends Controller
                 $product->save();
             }
         }
-        dd($err);
+
+        return new Table(['ph', 'ky', 'name', 'productNum'], $err);
     }
 
     public function test()
