@@ -34,6 +34,7 @@ class ApiController extends Controller
         // Formatting the date and time
         $date =  $yesterday->format('Y-m-d');
         $filePath = 'RTFile/' . $date . '-status.txt';
+        $date =  $yesterday->format('Ymd');
         $filePath = 'RTFile/04092_' . $date . '_STOCK_ALL.txt';
 
 
