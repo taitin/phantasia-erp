@@ -38,14 +38,25 @@ class ApiController extends Controller
         foreach ($stocks as $stock) {
             $product = Product::where('productNum', $stock[0])->first();
             $num = $product->currentAmount->num ?? 0;
-            if (isset($stock[1]) && $num != $stock[1]) {
-                $err[] = [
-                    'phantasia' => $num,
-                    'ky' => $stock[1],
-                    'name' => $product->ZHName ?? '',
-                    'productNum' => $stock[0] ?? '',
-                ];
+            if (isset($stock[1])) {
+                if (isset($err[$stock[0]]['ky'])) {
+                    $ky =  $err[$stock[0]]['ky'] + $stock[1];
+                } else {
+                    $ky =  $stock[1];
+                }
+                if ($num != $ky) {
+                    $err[$stock[0]] = [
+                        'phantasia' => $num,
+                        'ky' => $stock[1],
+                        'name' => $product->ZHName ?? '',
+                        'productNum' => $stock[0] ?? '',
+                    ];
+                } else {
+                    if (isset($err[$stock[0]])) unset($err[$stock[0]]);
+                }
             }
+
+
             if (!empty($product) && empty($product->length) && isset($stock[3]) && isset($stock[4]) && isset($stock[5])) {
                 $product->length = $stock[3];
                 $product->width = $stock[4];
