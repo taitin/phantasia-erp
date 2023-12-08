@@ -1,0 +1,35 @@
+<?php 
+return [
+    'labels' => [
+        'Shop' => '電壓',
+        'shop' => '電壓',
+    ],
+    'fields' => [
+        'licenceCode' => '授權碼',
+        'name' => '名稱',
+        'dirtyBit' => '更新中',
+        'lastUpdate' => '最近更新',
+        'buffering' => '緩衝讀取中',
+        'offset' => '篇及',
+        'consignmentStatus' => '寄賣狀態',
+        'discount' => '折扣',
+        'email' => '信箱',
+        'shipmentStatus' => '出貨狀態',
+        'distributeType' => '經銷狀態',
+        'show' => '顯示',
+        'handShake' => '連線請求',
+        'handShakeSign' => '連線中',
+        'jointype' => '加盟類型',
+        'cashType' => '付款方式',
+        'shipOut' => '固定出貨週次',
+        'lastBuffer' => '上次更新',
+        'fireData' => '火線更新',
+        'tableNum' => '桌數',
+        'holiday' => '休假日',
+        'showPrice' => '訂單顯示價錢',
+        'level' => '店家等級',
+        'shopLogin' => '新版登入',
+    ],
+    'options' => [
+    ],
+];

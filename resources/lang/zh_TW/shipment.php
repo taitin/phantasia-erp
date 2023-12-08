@@ -1,0 +1,37 @@
+<?php 
+return [
+    'labels' => [
+        'Shipment' => '出貨單',
+        'shipment' => '出貨單',
+    ],
+    'fields' => [
+        'shipmentCode' => '物流號碼',
+        'status' => '狀態',
+        'shopID' => '店家ID',
+        'shippingTime' => '送出時間',
+        'shippingNum' => '出貨單號',
+        'total' => '總金額',
+        'type' => '類型',
+        'shipmentComment' => '備註',
+        'arriveTime' => '到達時間',
+        'charge' => '收款日期',
+        'note' => '管理附言',
+        'addressID' => '地址ID',
+        'shipmentFee' => '運費',
+        'profit' => '毛利',
+        'boxTime' => '開始裝箱時間',
+        'finishTime' => '完成裝箱時間',
+        'boxNum' => '箱數',
+        'createTime' => '建立時間',
+        'payway' => '付款方式',
+        'invoiceDetail' => '發票方式',
+        'hidePrice' => '是否隱藏出貨價',
+        'assignDate' => '指定日期',
+        'assignT' => '到貨時間',
+        'account' => '操作帳號',
+        'discount' => '折扣',
+        'tcgTotal' => 'TCG總價',
+    ],
+    'options' => [
+    ],
+];

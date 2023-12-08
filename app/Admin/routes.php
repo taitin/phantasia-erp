@@ -21,4 +21,5 @@ Route::group([
     $router->resource('ledgers', 'LedgerController');
     $router->resource('subjects', 'SubjectController');
     $router->resource('subpoenas', 'SubpoenaController');
+    $router->resource('products', 'ProductController');
 });

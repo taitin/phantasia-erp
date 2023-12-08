@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 if (!function_exists('arrayToXml')) {
     /**
      * arrayToXml
@@ -96,5 +98,29 @@ if (!function_exists('xmlToArray')) {
 
         // Decode the JSON string to a PHP array
         return json_decode($jsonString, true);
+    }
+}
+
+if (!function_exists('getZip')) {
+    /**
+     * orderToken
+     *
+     * @param  mixed $url
+     * @return string
+     */
+    function getZip($address)
+    {
+        $response = Http::get('http://zip5.5432.tw/zip5json.py', [
+            'adrs' =>  preg_replace('/^\d+\s*/', '', $address),
+        ]);
+
+        if ($response->ok()) {
+            $result = $response->json();
+            return $result['zipcode'] ?? $result['zipcode6'] ?? '';
+        } else {
+            // $status = $response->status();
+            // $message = $response->body();
+            return '';
+        }
     }
 }

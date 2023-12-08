@@ -26,6 +26,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection deleted_at
      * @property Grid\Column|Collection version
      * @property Grid\Column|Collection detail
+     * @property Grid\Column|Collection logo
+     * @property Grid\Column|Collection home_page
+     * @property Grid\Column|Collection zip_url
      * @property Grid\Column|Collection is_enabled
      * @property Grid\Column|Collection permission
      * @property Grid\Column|Collection permission_id
@@ -58,6 +61,10 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection invoice
      * @property Grid\Column|Collection category_id
      * @property Grid\Column|Collection balance
+     * @property Grid\Column|Collection subpoea_id
+     * @property Grid\Column|Collection subpoean_id
+     * @property Grid\Column|Collection subpoena_id
+     * @property Grid\Column|Collection due_date
      * @property Grid\Column|Collection email
      * @property Grid\Column|Collection token
      * @property Grid\Column|Collection tokenable_type
@@ -531,6 +538,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection packageNumber
      * @property Grid\Column|Collection invoiceNumber
      * @property Grid\Column|Collection sub_code
+     * @property Grid\Column|Collection borrow
+     * @property Grid\Column|Collection loan
      * @property Grid\Column|Collection email_verified_at
      *
      * @method Grid\Column|Collection id(string $label = null)
@@ -548,6 +557,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection deleted_at(string $label = null)
      * @method Grid\Column|Collection version(string $label = null)
      * @method Grid\Column|Collection detail(string $label = null)
+     * @method Grid\Column|Collection logo(string $label = null)
+     * @method Grid\Column|Collection home_page(string $label = null)
+     * @method Grid\Column|Collection zip_url(string $label = null)
      * @method Grid\Column|Collection is_enabled(string $label = null)
      * @method Grid\Column|Collection permission(string $label = null)
      * @method Grid\Column|Collection permission_id(string $label = null)
@@ -580,6 +592,10 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection invoice(string $label = null)
      * @method Grid\Column|Collection category_id(string $label = null)
      * @method Grid\Column|Collection balance(string $label = null)
+     * @method Grid\Column|Collection subpoea_id(string $label = null)
+     * @method Grid\Column|Collection subpoean_id(string $label = null)
+     * @method Grid\Column|Collection subpoena_id(string $label = null)
+     * @method Grid\Column|Collection due_date(string $label = null)
      * @method Grid\Column|Collection email(string $label = null)
      * @method Grid\Column|Collection token(string $label = null)
      * @method Grid\Column|Collection tokenable_type(string $label = null)
@@ -1053,6 +1069,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection packageNumber(string $label = null)
      * @method Grid\Column|Collection invoiceNumber(string $label = null)
      * @method Grid\Column|Collection sub_code(string $label = null)
+     * @method Grid\Column|Collection borrow(string $label = null)
+     * @method Grid\Column|Collection loan(string $label = null)
      * @method Grid\Column|Collection email_verified_at(string $label = null)
      */
     class Grid {}
@@ -1075,6 +1093,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection deleted_at
      * @property Show\Field|Collection version
      * @property Show\Field|Collection detail
+     * @property Show\Field|Collection logo
+     * @property Show\Field|Collection home_page
+     * @property Show\Field|Collection zip_url
      * @property Show\Field|Collection is_enabled
      * @property Show\Field|Collection permission
      * @property Show\Field|Collection permission_id
@@ -1107,6 +1128,10 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection invoice
      * @property Show\Field|Collection category_id
      * @property Show\Field|Collection balance
+     * @property Show\Field|Collection subpoea_id
+     * @property Show\Field|Collection subpoean_id
+     * @property Show\Field|Collection subpoena_id
+     * @property Show\Field|Collection due_date
      * @property Show\Field|Collection email
      * @property Show\Field|Collection token
      * @property Show\Field|Collection tokenable_type
@@ -1580,6 +1605,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection packageNumber
      * @property Show\Field|Collection invoiceNumber
      * @property Show\Field|Collection sub_code
+     * @property Show\Field|Collection borrow
+     * @property Show\Field|Collection loan
      * @property Show\Field|Collection email_verified_at
      *
      * @method Show\Field|Collection id(string $label = null)
@@ -1597,6 +1624,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection deleted_at(string $label = null)
      * @method Show\Field|Collection version(string $label = null)
      * @method Show\Field|Collection detail(string $label = null)
+     * @method Show\Field|Collection logo(string $label = null)
+     * @method Show\Field|Collection home_page(string $label = null)
+     * @method Show\Field|Collection zip_url(string $label = null)
      * @method Show\Field|Collection is_enabled(string $label = null)
      * @method Show\Field|Collection permission(string $label = null)
      * @method Show\Field|Collection permission_id(string $label = null)
@@ -1629,6 +1659,10 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection invoice(string $label = null)
      * @method Show\Field|Collection category_id(string $label = null)
      * @method Show\Field|Collection balance(string $label = null)
+     * @method Show\Field|Collection subpoea_id(string $label = null)
+     * @method Show\Field|Collection subpoean_id(string $label = null)
+     * @method Show\Field|Collection subpoena_id(string $label = null)
+     * @method Show\Field|Collection due_date(string $label = null)
      * @method Show\Field|Collection email(string $label = null)
      * @method Show\Field|Collection token(string $label = null)
      * @method Show\Field|Collection tokenable_type(string $label = null)
@@ -2102,6 +2136,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection packageNumber(string $label = null)
      * @method Show\Field|Collection invoiceNumber(string $label = null)
      * @method Show\Field|Collection sub_code(string $label = null)
+     * @method Show\Field|Collection borrow(string $label = null)
+     * @method Show\Field|Collection loan(string $label = null)
      * @method Show\Field|Collection email_verified_at(string $label = null)
      */
     class Show {}
