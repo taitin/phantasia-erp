@@ -13,7 +13,7 @@
             parent.location.reload();
         </script>
     @else
-        <div style="color:red; font-size:35px"></div>
+        <div style="color:red; font-size:35px">{{ $err }}</div>
     @endif
 
 
