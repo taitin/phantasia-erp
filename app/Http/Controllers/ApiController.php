@@ -63,8 +63,8 @@ class ApiController extends Controller
                 $err[$stock[0]] = [
                     'phantasia' => $num,
                     'ky' => $ky,
-                    'n' => str_contains('n', $stock[2]) ? $stock[1] : $n,
-                    'b' => str_contains('b', $stock[2]) ? $stock[1] : $b,
+                    'n' => str_contains('N', $stock[2]) ? $stock[1] : $n,
+                    'b' => str_contains('B', $stock[2]) ? $stock[1] : $b,
                     'name' => $product->ZHName ?? '',
                     'productNum' => $stock[0] ?? '',
                 ];
@@ -89,7 +89,7 @@ class ApiController extends Controller
             $table[] = array_values($e);
         }
 
-        return new Table(['ph', 'ky', 'name', 'productNum'], $table);
+        return new Table(['ph', 'ky', 'N', 'B', 'name', 'productNum'], $table);
     }
 
     public function test()
