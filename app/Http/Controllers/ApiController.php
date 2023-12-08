@@ -47,7 +47,7 @@ class ApiController extends Controller
                 if ($num != $ky) {
                     $err[$stock[0]] = [
                         'phantasia' => $num,
-                        'ky' => $stock[1],
+                        'ky' => $ky,
                         'name' => $product->ZHName ?? '',
                         'productNum' => $stock[0] ?? '',
                     ];
