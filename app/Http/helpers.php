@@ -172,6 +172,8 @@ if (!function_exists('getSameProductP2K')) {
      */
     function getSameProductP2K($product)
     {
+        if (empty($product)) return $product;
+
         $map = ProductMap::where('phantasia', $product->productNum)->first();
         if (empty($map)) return $product;
         else {
@@ -187,6 +189,7 @@ if (!function_exists('getSameProductK2P')) {
 
     function getSameProductK2P($product)
     {
+        if (empty($product)) return $product;
         $map = ProductMap::where('ky', $product->productNum)->first();
         if (empty($map)) return $product;
         else {
