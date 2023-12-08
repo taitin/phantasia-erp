@@ -66,7 +66,13 @@ class ApiController extends Controller
             }
         }
 
-        return new Table(['ph', 'ky', 'name', 'productNum'], $err);
+        $table = [];
+        foreach ($err as $e) {
+
+            $table[] = array_values($e);
+        }
+
+        return new Table(['ph', 'ky', 'name', 'productNum'], $table);
     }
 
     public function test()
