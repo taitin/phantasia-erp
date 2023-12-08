@@ -40,10 +40,12 @@ class ApiController extends Controller
             $product = Product::where('productNum', $stock[0])->first();
             $num = $product->currentAmount->num ?? 0;
 
-            $same = getSameProductK2P($product);
-            if ($same->productNum != $product->productNum) {
-                $n = $same->currentAmount->num ?? 0;
-                $num += $n;
+            if (!empty($product)) {
+                $same = getSameProductK2P($product);
+                if ($same->productNum != $product->productNum) {
+                    $n = $same->currentAmount->num ?? 0;
+                    $num += $n;
+                }
             }
 
             if (isset($stock[1])) {
