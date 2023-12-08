@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\EcOrder;
 use App\Models\Shipment;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -24,8 +26,14 @@ class ApiController extends Controller
 
     public function test()
     {
+        // Current date and time
+        $now = new DateTime();
+        // Subtracting one day
+        $yesterday = $now->sub(new DateInterval('P1D'));
 
-        $filePath = 'RTFile/2023-12-07-status.txt';
+        // Formatting the date and time
+        $date =  $yesterday->format('Y-m-d');
+        $filePath = 'RTFile/' . $date . '-status.txt';
         // 確保檔案存在
         if (Storage::disk('ftp')->exists($filePath)) {
             // 使用 Storage 的 readStream 方法打開檔案流
@@ -33,12 +41,13 @@ class ApiController extends Controller
 
             if ($stream) {
                 // 使用標準的 PHP 函數來逐行讀取檔案
+                $result = [];
                 while (!feof($stream)) {
                     $line = fgets($stream);
                     // 處理每一行的內容，例如輸出
-                    echo $line . "<br>";
+                    $result[] = explode(' ', $line);
                 }
-
+                dd($result);
                 // 關閉檔案流
                 fclose($stream);
             }
