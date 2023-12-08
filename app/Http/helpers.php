@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('arrayToXml')) {
     /**
@@ -121,6 +122,39 @@ if (!function_exists('getZip')) {
             // $status = $response->status();
             // $message = $response->body();
             return '';
+        }
+    }
+}
+
+if (!function_exists('getFtpFile')) {
+    /**
+     * getFtpFile
+     *
+     * @param  mixed $path
+     * @return void
+     */
+    function getFtpFile($filePath)
+    {
+        // 確保檔案存在
+        if (Storage::disk('ftp')->exists($filePath)) {
+            // 使用 Storage 的 readStream 方法打開檔案流
+            $stream = Storage::disk('ftp')->readStream($filePath);
+
+            if ($stream) {
+                // 使用標準的 PHP 函數來逐行讀取檔案
+                $result = [];
+                while (!feof($stream)) {
+                    $line = fgets($stream);
+                    if ($line != 'EOF3')                  // 處理每一行的內容，例如輸出
+                        $result[] = preg_split('/\s+/', $line);
+                }
+
+                // 關閉檔案流
+                fclose($stream);
+                return $result;
+            }
+        } else {
+            return [];
         }
     }
 }

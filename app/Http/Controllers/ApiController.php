@@ -24,6 +24,18 @@ class ApiController extends Controller
         return $this->{$func}($request);
     }
 
+    public function stock_check()
+    {
+        // Current date and time
+        $now = new DateTime();
+        // Subtracting one day
+        $yesterday = $now->sub(new DateInterval('P1D'));
+        $date =  $yesterday->format('Ymd');
+        $filePath = 'RTFile/04092_' . $date . '_STOCK_ALL.txt';
+        $stocks = getFtpFile($filePath);
+        dd($stocks);
+    }
+
     public function test()
     {
         // Current date and time
@@ -36,28 +48,7 @@ class ApiController extends Controller
         $filePath = 'RTFile/' . $date . '-status.txt';
         $date =  $yesterday->format('Ymd');
         $filePath = 'RTFile/04092_' . $date . '_STOCK_ALL.txt';
-
-
-        // 確保檔案存在
-        if (Storage::disk('ftp')->exists($filePath)) {
-            // 使用 Storage 的 readStream 方法打開檔案流
-            $stream = Storage::disk('ftp')->readStream($filePath);
-
-            if ($stream) {
-                // 使用標準的 PHP 函數來逐行讀取檔案
-                $result = [];
-                while (!feof($stream)) {
-                    $line = fgets($stream);
-                    if ($line != 'EOF3')                  // 處理每一行的內容，例如輸出
-                        $result[] = preg_split('/\s+/', $line);
-                }
-                dd($result);
-                // 關閉檔案流
-                fclose($stream);
-            }
-        } else {
-            echo "檔案不存在";
-        }
+        $stocks = getFtpFile($filePath);
     }
     public function ky_order(Request $request)
     {
