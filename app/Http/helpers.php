@@ -131,7 +131,6 @@ if (!function_exists('getFtpFile')) {
      * getFtpFile
      *
      * @param  mixed $path
-     * @return void
      */
     function getFtpFile($filePath)
     {

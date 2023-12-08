@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EcOrder;
+use App\Models\Product;
 use App\Models\Shipment;
 use DateInterval;
 use DateTime;
@@ -33,7 +34,25 @@ class ApiController extends Controller
         $date =  $yesterday->format('Ymd');
         $filePath = 'RTFile/04092_' . $date . '_STOCK_ALL.txt';
         $stocks = getFtpFile($filePath);
-        dd($stocks);
+        $err = [];
+        foreach ($stocks as $stock) {
+            $product = Product::where('productNum', $stock[0])->first();
+            if ($product->currentAmount->num != $stock[1]) {
+                $err[] = [
+                    'phantasia' => $product->currentAmount->num,
+                    'ky' => $stock[1],
+                    'name' => $product->ZHName,
+                    'productNum' => $product->productNum,
+                ];
+            }
+            if (empty($product->length)) {
+                $product->length = $stock[3];
+                $product->width = $stock[4];
+                $product->height = $stock[5];
+                $product->save();
+            }
+        }
+        dd($err);
     }
 
     public function test()
