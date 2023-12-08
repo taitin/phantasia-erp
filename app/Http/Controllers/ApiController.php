@@ -34,6 +34,9 @@ class ApiController extends Controller
         // Formatting the date and time
         $date =  $yesterday->format('Y-m-d');
         $filePath = 'RTFile/' . $date . '-status.txt';
+        $filePath = 'RTFile/04092_' . $date . '_STOCK_ALL.txt';
+
+
         // 確保檔案存在
         if (Storage::disk('ftp')->exists($filePath)) {
             // 使用 Storage 的 readStream 方法打開檔案流
