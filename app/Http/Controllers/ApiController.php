@@ -44,8 +44,8 @@ class ApiController extends Controller
                 $result = [];
                 while (!feof($stream)) {
                     $line = fgets($stream);
-                    // 處理每一行的內容，例如輸出
-                    $result[] = preg_split('/\s+/', $line);
+                    if ($line != 'EOF3')                  // 處理每一行的內容，例如輸出
+                        $result[] = preg_split('/\s+/', $line);
                 }
                 dd($result);
                 // 關閉檔案流
