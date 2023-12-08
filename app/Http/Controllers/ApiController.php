@@ -75,7 +75,6 @@ class ApiController extends Controller
                 $orderType = 'A11';
             }
 
-
             $main =   [
                 'serviceType' =>  $payway[$ec->payway], //服務類別 1:取貨付款(店配) / 代收貨款(宅配) 3:取貨不付款(店配) / 一般配送(宅配、海外)
                 'orderType' =>   $orderType, //店配，A01:逕交付出貨；A02:確認後，交付出貨 宅配，A05:逕交付出貨；A06:確認後，交付出貨 海外，A11:逕交付出貨；A12:確認後，交付出貨
