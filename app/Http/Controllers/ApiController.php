@@ -44,6 +44,7 @@ class ApiController extends Controller
                 $same = getSameProductK2P($product);
                 if (!empty($same)) {
                     if ($same->productNum != $product->productNum) {
+                        dump($same);
                         $n = $same->currentAmount->num ?? 0;
                         $num += $n;
                     }
