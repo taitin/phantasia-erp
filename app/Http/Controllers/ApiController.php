@@ -42,8 +42,8 @@ class ApiController extends Controller
                 $err[] = [
                     'phantasia' => $num,
                     'ky' => $stock[1],
-                    'name' => $product->ZHName,
-                    'productNum' => $product->productNum,
+                    'name' => $product->ZHName ?? '',
+                    'productNum' => $stock[0] ?? '',
                 ];
             }
             if (empty($product->length) && isset($stock[3]) && isset($stock[4]) && isset($stock[5])) {
