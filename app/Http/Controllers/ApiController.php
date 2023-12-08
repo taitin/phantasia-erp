@@ -45,7 +45,7 @@ class ApiController extends Controller
                 while (!feof($stream)) {
                     $line = fgets($stream);
                     // 處理每一行的內容，例如輸出
-                    $result[] = str_replace(' ', '', $line);
+                    $result[] = str_replace(' ', ',', $line);
                 }
                 dd($result);
                 // 關閉檔案流
