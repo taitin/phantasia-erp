@@ -37,9 +37,10 @@ class ApiController extends Controller
         $err = [];
         foreach ($stocks as $stock) {
             $product = Product::where('productNum', $stock[0])->first();
-            if ($product->currentAmount->num != $stock[1]) {
+            $num = $product->currentAmount->num ?? 0;
+            if ($num != $stock[1]) {
                 $err[] = [
-                    'phantasia' => $product->currentAmount->num,
+                    'phantasia' => $num,
                     'ky' => $stock[1],
                     'name' => $product->ZHName,
                     'productNum' => $product->productNum,
