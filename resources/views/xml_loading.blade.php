@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>傳送到凱耀物流</title>
+    <style>
+        iframe {
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
