@@ -46,7 +46,7 @@ class ApiController extends Controller
                     'productNum' => $stock[0] ?? '',
                 ];
             }
-            if (empty($product->length) && isset($stock[3]) && isset($stock[4]) && isset($stock[5])) {
+            if (!empty($product) && empty($product->length) && isset($stock[3]) && isset($stock[4]) && isset($stock[5])) {
                 $product->length = $stock[3];
                 $product->width = $stock[4];
                 $product->height = $stock[5];
