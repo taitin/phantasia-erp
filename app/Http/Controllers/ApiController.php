@@ -43,9 +43,8 @@ class ApiController extends Controller
                 // 使用標準的 PHP 函數來逐行讀取檔案
                 $result = [];
                 while (!feof($stream)) {
-                    $line = fgets($stream);
+                    $result[] = fgetcsv($stream, 1000, "\t");
                     // 處理每一行的內容，例如輸出
-                    $result[] = explode(' ', $line);
                 }
                 dd($result);
                 // 關閉檔案流
