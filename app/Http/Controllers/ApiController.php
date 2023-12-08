@@ -26,7 +26,7 @@ class ApiController extends Controller
         return $this->{$func}($request);
     }
 
-    public function stock_check()
+    public function stock_check(Request $stock_check)
     {
         // Current date and time
         $now = new DateTime();
