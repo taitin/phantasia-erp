@@ -27,6 +27,23 @@ class ApiController extends Controller
     }
     public function ky_order(Request $request)
     {
+
+        $shipment = Shipment::find($request->shipmentID);
+        if ($shipment->sendKY == 0) {
+            $data['shipmentID'] = $request->shipmentID;
+            $data['sended'] = false;
+        } else {
+
+            $data['sended'] = true;
+        }
+
+
+        return view('xml_loading', $data);
+    }
+
+
+    public function go_ky_order(Request $request)
+    {
         $shipment = Shipment::find($request->shipmentID);
         $rtURL =   url('api/ky_callback');
         $payway = [0 => 1, 1 => 3]; //0 (PH)款到發貨=>(KY)1:取貨付款(店配) / 代收貨款(宅配) ;1(PH)貨到付款=>3:取貨不付款(店配) / 一般配送(宅配、海外)
@@ -158,6 +175,17 @@ class ApiController extends Controller
 
     function ky_callback(Request $request)
     {
-        dump(xmlToArray($request->web_return_xml));
+        $data = (xmlToArray($request->web_return_xml));
+
+        if (isset($data['package']) && $data['package']['orderStatus'] == 'OK' && isset($data['package']['orderID'])) {
+            $shipment = Shipment::find($data['package']['orderID']);
+            $shipment->sendKY = 1;
+            $shipment->save();
+            $result['result'] = true;
+        } else {
+            $result['result'] = false;
+            $result['err'] = config('ky.errcode.' . $data['package']['orderStatus']);
+        }
+        return view('xml_result', $result);
     }
 }
