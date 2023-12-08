@@ -25,20 +25,23 @@ class ApiController extends Controller
     public function test()
     {
 
-        $path = 'RTFile/2023-12-07-status.txt';
-        if (File::exists($path)) {
-            // 打開檔案進行讀取
-            $file = fopen($path, "r");
+        $filePath = 'RTFile/2023-12-07-status.txt';
+        // 確保檔案存在
+        if (Storage::disk('ftp')->exists($filePath)) {
+            // 使用 Storage 的 readStream 方法打開檔案流
+            $stream = Storage::disk('ftp')->readStream($filePath);
 
-            // 逐行讀取檔案內容
-            while (!feof($file)) {
-                $line = fgets($file);
-                // 處理每一行的內容，例如輸出
-                echo $line . "<br>";
+            if ($stream) {
+                // 使用標準的 PHP 函數來逐行讀取檔案
+                while (!feof($stream)) {
+                    $line = fgets($stream);
+                    // 處理每一行的內容，例如輸出
+                    echo $line . "<br>";
+                }
+
+                // 關閉檔案流
+                fclose($stream);
             }
-
-            // 關閉檔案
-            fclose($file);
         } else {
             echo "檔案不存在";
         }
