@@ -39,6 +39,13 @@ class ApiController extends Controller
         foreach ($stocks as $stock) {
             $product = Product::where('productNum', $stock[0])->first();
             $num = $product->currentAmount->num ?? 0;
+
+            $same = getSameProductK2P($product);
+            if ($same->productNum != $product->productNum) {
+                $n = $same->currentAmount->num ?? 0;
+                $num += $n;
+            }
+
             if (isset($stock[1])) {
                 if (isset($err[$stock[0]]['ky'])) {
                     $ky =  $err[$stock[0]]['ky'] + $stock[1];
@@ -170,7 +177,7 @@ class ApiController extends Controller
         } else {
             $main =   [
                 'serviceType' =>  $payway[$shipment->payway], //服務類別 1:取貨付款(店配) / 代收貨款(宅配) 3:取貨不付款(店配) / 一般配送(宅配、海外)
-                'orderType' => 'A05', //店配，A01:逕交付出貨；A02:確認後，交付出貨 宅配，A05:逕交付出貨；A06:確認後，交付出貨 海外，A11:逕交付出貨；A12:確認後，交付出貨
+                'orderType' => 'A06', //店配，A01:逕交付出貨；A02:確認後，交付出貨 宅配，A05:逕交付出貨；A06:確認後，交付出貨 海外，A11:逕交付出貨；A12:確認後，交付出貨
                 'orderID' =>    $shipment->id, //訂單號碼
                 'shippingID' =>   $shipment->shippingNum, //出貨單號 若無出貨單號，請填入訂單號碼
                 'orderAmount' => $shipment->total * $shipment->payway, //代收金額 或包裹價值
@@ -200,16 +207,18 @@ class ApiController extends Controller
 
         $products = [];
         foreach ($shipment->details as $detail) {
-            if ($detail->product->type < 5)
+            if ($detail->product->type < 5) {
+                $product = getSameProductP2K($detail->product);
                 $products[] =
                     [
-                        'prodID' => $detail->product->productNum, //商品編號
-                        'prodName' => $detail->product->ZHName, //品名
+                        'prodID' =>  $product->productNum, //商品編號
+                        'prodName' =>  $product->ZHName, //品名
                         'prodQty' =>  $detail->sellNum, //數量
                         'prodPrice' => $detail->sellPrice, //單價
                         'prodExpiryDate' => '', //商品指定效期
                         'delSheetRemark' => '', //出貨單備註
                     ];
+            }
         }
 
 

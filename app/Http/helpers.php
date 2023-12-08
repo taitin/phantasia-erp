@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ProductMap;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -154,6 +155,43 @@ if (!function_exists('getFtpFile')) {
             }
         } else {
             return [];
+        }
+    }
+}
+
+
+
+
+if (!function_exists('getSameProductP2K')) {
+
+
+    /**
+     * getSameProductP2K
+     *
+     * @param  mixed $product
+     */
+    function getSameProductP2K($product)
+    {
+        $map = ProductMap::where('phantasia', $product->productNum)->first();
+        if (empty($map)) return $product;
+        else {
+
+            return $map->productByKy;
+        }
+    }
+}
+
+
+if (!function_exists('getSameProductK2P')) {
+
+
+    function getSameProductK2P($product)
+    {
+        $map = ProductMap::where('ky', $product->productNum)->first();
+        if (empty($map)) return $product;
+        else {
+
+            return $map->productByPh;
         }
     }
 }
