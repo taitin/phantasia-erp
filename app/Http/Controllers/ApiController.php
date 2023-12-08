@@ -63,8 +63,8 @@ class ApiController extends Controller
                 $err[$stock[0]] = [
                     'phantasia' => $num,
                     'ky' => $ky,
-                    'n' => str_contains('N', $stock[2]) ? $stock[1] : $n,
-                    'b' => str_contains('B', $stock[2]) ? $stock[1] : $b,
+                    'n' => str_contains($stock[2], 'N') ? $stock[1] : $n,
+                    'b' => str_contains($stock[2], 'B') ? $stock[1] : $b,
                     'name' => $product->ZHName ?? '',
                     'productNum' => $stock[0] ?? '',
                 ];
