@@ -54,7 +54,7 @@ return [
         ],
         'ftp' => [
             'driver'   => 'ftp',
-            'host'     => 'ftp://ftp.kyyo.com.tw/',
+            'host'     => 'ftp.kyyo.com.tw',
             'username' => '04092',
             'password' => '437dZjk2YTc2MWJhY2ZhYjc4NmE5ZmM2Mjg2',
             // 可選的設定
