@@ -6,6 +6,7 @@ use App\Models\EcOrder;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
@@ -23,7 +24,8 @@ class ApiController extends Controller
     public function test()
     {
 
-        dd('test');
+        $contents = Storage::disk('ftp')->get('2023-12-07-status.txt');
+        dd($contents);
     }
     public function ky_order(Request $request)
     {
