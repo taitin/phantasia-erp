@@ -36,6 +36,7 @@ class ApiController extends Controller
         $filePath = 'RTFile/04092_' . $date . '_STOCK_ALL.txt';
         $stocks = getFtpFile($filePath);
         $err = [];
+        $bad = [];
         foreach ($stocks as $stock) {
             $product = Product::where('productNum', $stock[0])->first();
             $num = $product->currentAmount->num ?? 0;
@@ -69,6 +70,11 @@ class ApiController extends Controller
                     'productNum' => $stock[0] ?? '',
                 ];
 
+                if (str_contains($stock[2], 'B'))
+                    $bad[$stock[0]] = $err[$stock[0]];
+
+
+
                 if ($num == $ky) {
                     if (isset($err[$stock[0]])) unset($err[$stock[0]]);
                 }
@@ -83,13 +89,21 @@ class ApiController extends Controller
             }
         }
 
-        $table = [];
-        foreach ($err as $e) {
+        if ($request->bad) {
+            $table = [];
+            foreach ($bad as $e) {
 
-            $table[] = array_values($e);
+                $table[] = array_values($e);
+            }
+        } else {
+            $table = [];
+            foreach ($err as $e) {
+
+                $table[] = array_values($e);
+            }
         }
 
-        return new Table(['ph', 'ky', 'N', 'B', 'name', 'productNum'], $table);
+        return (new Table(['ph', 'ky', 'N', 'B', 'name', 'productNum'], $table))->render();
     }
 
     public function test()
