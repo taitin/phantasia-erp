@@ -22,7 +22,7 @@ class LineController extends Controller
         $socialId = $request->events[0]['source']['userId'] ?? '';
         $groupId = $request->events[0]['source']['groupId'] ?? '';
 
-        Log::debug($request);
+        // Log::debug($request);
         try {
             Log::debug($groupId);
             $group = (new LineService())->getGroupSummary($groupId);

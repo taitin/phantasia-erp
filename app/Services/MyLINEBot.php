@@ -44,6 +44,6 @@ class MyLINEBot extends LINEBot
     {
 
         $response = $this->httpClient->get($this->endpointBase . '/v2/bot/group/' . urlencode($groupId) . '/summary');
-        return $response;
+        return $response->;
     }
 }

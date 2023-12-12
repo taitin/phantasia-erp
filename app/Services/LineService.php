@@ -59,10 +59,20 @@ class LineService
 
     public function getGroupSummary($group_id)
     {
-        $httpClient = new CurlHTTPClient(env('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
-        // ServicesLINEBot
-        $LINE = new MyLINEBot($httpClient, ['channelSecret' => env('LINE_SECRET')]);
-        return   $LINE->getGroupSummary($group_id);
+        // $httpClient = new CurlHTTPClient(env('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        // // ServicesLINEBot
+        // $LINE = new MyLINEBot($httpClient, ['channelSecret' => env('LINE_SECRET')]);
+        // return   $LINE->getGroupSummary($group_id);
+        $token = env('LINE_BOT_CHANNEL_ACCESS_TOKEN');
+        $client = new Client();
+        $headers = [
+            'Authorization' => 'Bearer ' . $token,
+            'Accept'        => 'application/json',
+        ];
+        $response = $client->request('GET', 'https://api.line.me/v2/bot/group/$group_id/summary', [
+            'headers' => $headers
+        ]);
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     public function getUserProfile($token)
