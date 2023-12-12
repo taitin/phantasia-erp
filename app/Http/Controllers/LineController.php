@@ -23,15 +23,15 @@ class LineController extends Controller
         $groupId = $request->events[0]['source']['groupId'] ?? '';
 
         // Log::debug($request);
-        try {
-            Log::debug($groupId);
-            $group = (new LineService())->getGroupSummary($groupId);
+        // try {
+        //     Log::debug($groupId);
+        //     $group = (new LineService())->getGroupSummary($groupId);
 
-            Log::debug($group);
-        } catch (Exception $e) {
+        //     Log::debug($group);
+        // } catch (Exception $e) {
 
-            Log::debug($e);
-        }
+        //     Log::debug($e);
+        // }
 
         // $inputText = '產品 便攜';
         if (str_contains($inputText, '產品')) {
