@@ -24,6 +24,7 @@ class LineController extends Controller
 
         Log::debug($request);
         try {
+            Log::debug($groupId);
             $group = (new LineService())->getGroupSummary($groupId);
 
             Log::debug($group);
