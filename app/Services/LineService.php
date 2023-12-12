@@ -69,7 +69,7 @@ class LineService
             'Authorization' => 'Bearer ' . $token,
             'Accept'        => 'application/json',
         ];
-        $response = $client->request('GET', 'https://api.line.me/v2/bot/group/$group_id/summary', [
+        $response = $client->request('GET', "https://api.line.me/v2/bot/group/$group_id/summary", [
             'headers' => $headers
         ]);
         return json_decode($response->getBody()->getContents(), true);
