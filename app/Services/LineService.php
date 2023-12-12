@@ -61,6 +61,7 @@ class LineService
     public function getGroupSummary($group_id)
     {
         $httpClient = new CurlHTTPClient(env('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        // ServicesLINEBot
         $LINE = new ServicesLINEBot($httpClient, ['channelSecret' => env('LINE_SECRET')]);
         return   $LINE->getGroupSummary($group_id);
     }
