@@ -19,7 +19,7 @@ class LineController extends Controller
         $replyToken = $request->events[0]['replyToken'] ?? '';
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'] ?? '';
-        Log::debug($request->events[0]);
+        Log::debug($request);
         // $inputText = '產品 便攜';
         if (str_contains($inputText, '產品')) {
 
