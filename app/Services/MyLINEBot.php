@@ -4,7 +4,7 @@ namespace App\Services;
 
 use LINE\LINEBot as LINELINEBot;
 
-class LINEBot extends LINELINEBot
+class MyLINEBot extends LINELINEBot
 {
     /**
      * Gets specified group's profile through API calling.
