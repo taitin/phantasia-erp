@@ -14,6 +14,7 @@ class LINEBot extends LINELINEBot
      */
     public function getGroupSummary($groupId)
     {
+
         return $this->httpClient->get($this->endpointBase . '/v2/bot/group/' . urlencode($groupId)) . '/summary';
     }
 }
