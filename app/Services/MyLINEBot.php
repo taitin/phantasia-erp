@@ -43,6 +43,7 @@ class MyLINEBot extends LINEBot
     public function getGroupSummary($groupId)
     {
 
-        return $this->httpClient->get($this->endpointBase . '/v2/bot/group/' . urlencode($groupId) . '/summary');
+        $response = $this->httpClient->get($this->endpointBase . '/v2/bot/group/' . urlencode($groupId) . '/summary');
+        return json_decode($response->getBody()->getContents(), true);
     }
 }
