@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductModel;
 use App\Services\LineService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -22,9 +23,14 @@ class LineController extends Controller
         $groupId = $request->events[0]['source']['groupId'] ?? '';
 
         Log::debug($request);
-        $group = (new LineService())->getGroupSummary($groupId);
+        try {
+            $group = (new LineService())->getGroupSummary($groupId);
 
-        Log::debug($group);
+            Log::debug($group);
+        } catch (Exception $e) {
+
+            Log::debug($e);
+        }
 
         // $inputText = '產品 便攜';
         if (str_contains($inputText, '產品')) {
