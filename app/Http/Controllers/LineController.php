@@ -19,7 +19,13 @@ class LineController extends Controller
         $replyToken = $request->events[0]['replyToken'] ?? '';
         $inputText = $request->events[0]['message']['text'] ?? '';
         $socialId = $request->events[0]['source']['userId'] ?? '';
+        $groupId = $request->events[0]['source']['groupId'] ?? '';
+
         Log::debug($request);
+        $group = (new LineService())->getGroupSummary($groupId);
+
+        Log::debug($group);
+
         // $inputText = '產品 便攜';
         if (str_contains($inputText, '產品')) {
 
@@ -69,6 +75,7 @@ class LineController extends Controller
             else $m = implode("\n", $output);
             // dd($m);
             $r =  (new LineService())->replyMessage($replyToken, [["message" => $m]]);
+
             Log::debug($r);
         }
     }

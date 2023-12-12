@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Member;
 use App\Services\BubbleContainerBuilder as ServicesBubbleContainerBuilder;
+use App\Services\LINEBot as ServicesLINEBot;
 use Google\Service\CloudHealthcare\Message;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,13 @@ class LineService
             ]
         ]);
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    public function getGroupSummary($group_id)
+    {
+        $httpClient = new CurlHTTPClient(env('LINE_BOT_CHANNEL_ACCESS_TOKEN'));
+        $LINE = new ServicesLINEBot($httpClient, ['channelSecret' => env('LINE_SECRET')]);
+        return   $LINE->getGroupSummary($group_id);
     }
 
     public function getUserProfile($token)

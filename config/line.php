@@ -9,4 +9,6 @@ return [
     'get_access_token_url' => 'https://api.line.me/v2/oauth/accessToken',
     'get_token_url' => 'https://api.line.me/oauth2/v2.1/token',
     'get_user_profile_url' => 'https://api.line.me/v2/profile',
+    'get_group_summary_url' => 'https://api.line.me/v2/profile',
+
 ];
