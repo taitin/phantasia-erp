@@ -2,10 +2,38 @@
 
 namespace App\Services;
 
-use LINE\LINEBot as LINELINEBot;
+use LINE\LINEBot;
+use LINE\LINEBot\HTTPClient;
 
-class MyLINEBot extends LINELINEBot
+class MyLINEBot extends LINEBot
 {
+
+    /** @var string */
+    private $channelSecret;
+    /** @var string */
+    private $endpointBase;
+    /** @var HTTPClient */
+    private $httpClient;
+
+    /**
+     * LINEBot constructor.
+     *
+     * @param HTTPClient $httpClient HTTP client instance to use API calling.
+     * @param array $args Configurations.
+     */
+    public function __construct(HTTPClient $httpClient, array $args)
+    {
+        $this->httpClient = $httpClient;
+        $this->channelSecret = $args['channelSecret'];
+
+        $this->endpointBase = LINEBot::DEFAULT_ENDPOINT_BASE;
+        if (array_key_exists('endpointBase', $args) && !empty($args['endpointBase'])) {
+            $this->endpointBase = $args['endpointBase'];
+        }
+    }
+
+
+
     /**
      * Gets specified group's profile through API calling.
      *
