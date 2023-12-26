@@ -233,7 +233,6 @@ class ApiController extends Controller
         foreach ($shipment->details as $detail) {
             if ($detail->product->type < 5) {
                 $product = getSameProductP2K($detail->product);
-                dump($product);
                 $products[] =
                     [
                         'prodID' =>  $product->productNum, //商品編號
@@ -264,7 +263,7 @@ class ApiController extends Controller
         ];
 
         $data['xml'] = convertArrayToXml($data, 'order', config('ky.attributes'));
-        dd($data['xml']);
+
         $data['url'] =  config('ky.url');
         if ($request->show_xml)        return   $data['xml'];
         return view('xml', $data);
