@@ -263,7 +263,7 @@ class ApiController extends Controller
         ];
 
         $data['xml'] = convertArrayToXml($data, 'order', config('ky.attributes'));
-
+        dd($data['xml']);
         $data['url'] =  config('ky.url');
         if ($request->show_xml)        return   $data['xml'];
         return view('xml', $data);
