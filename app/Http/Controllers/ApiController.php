@@ -233,6 +233,7 @@ class ApiController extends Controller
         foreach ($shipment->details as $detail) {
             if ($detail->product->type < 5) {
                 $product = getSameProductP2K($detail->product);
+                dump($product);
                 $products[] =
                     [
                         'prodID' =>  $product->productNum, //商品編號
