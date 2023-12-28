@@ -166,6 +166,8 @@ class ApiController extends Controller
                 $stCode = $address[0] ?? '';
                 $stCode = 'F020879';
                 $stName = $address[1] ?? '';
+                $stName = ' 全家三重仁興店';
+
                 $rvAddr = '';
             } else if (in_array($ec->transportID, [5])) {
                 $orderType = 'A11';
