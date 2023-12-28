@@ -163,10 +163,10 @@ class ApiController extends Controller
 
                 $address = explode(',', $ec->receiverAddress);
                 $stType = 'F';
-                $stCode = $address[0] ?? '';
-                $stCode = 'F020879';
+                $stCode = str_replace('F0', '', $address[0]) ?? '';
+                // $stCode = 'F020879';
                 $stName = $address[1] ?? '';
-                $stName = '三重仁興店';
+                // $stName = '三重仁興店';
 
                 $rvAddr = '';
             } else if (in_array($ec->transportID, [5])) {
@@ -189,7 +189,7 @@ class ApiController extends Controller
                 'rvNTel' => $rvDTel ?? $ec->receiverPhone, //取件人夜間電話
                 'rvMobile' => $rvDTel ?? $ec->receiverPhone, //取件人行動電話
                 'stType' => $stType ?? '', //取件門市通路  S11:統一超商 F:全家
-                'stCode' =>  trim(preg_replace('/[^\d]/', '', $stCode)) ?? '', //取件門市代碼
+                'stCode' =>  trim($stCode) ?? '', //取件門市代碼
                 'stName' =>  trim($stName) ?? '', //取件門市名稱
                 'supplierID' => '', //供應商代號
                 'supplierEmail' => '', //供應商電子郵件
