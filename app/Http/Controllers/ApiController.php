@@ -164,6 +164,7 @@ class ApiController extends Controller
                 $address = explode(',', $ec->receiverAddress);
                 $stType = 'F';
                 $stCode = $address[0] ?? '';
+                $stCode = 'F020879';
                 $stName = $address[1] ?? '';
                 $rvAddr = '';
             } else if (in_array($ec->transportID, [5])) {
