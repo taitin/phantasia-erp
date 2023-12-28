@@ -186,8 +186,8 @@ class ApiController extends Controller
                 'rvNTel' => $rvDTel ?? $ec->receiverPhone, //取件人夜間電話
                 'rvMobile' => $rvDTel ?? $ec->receiverPhone, //取件人行動電話
                 'stType' => $stType ?? '', //取件門市通路  S11:統一超商 F:全家
-                'stCode' =>  $stCod ?? '', //取件門市代碼
-                'stName' =>  $stName ?? '', //取件門市名稱
+                'stCode' =>  trim($stCode) ?? '', //取件門市代碼
+                'stName' =>  trim($stName) ?? '', //取件門市名稱
                 'supplierID' => '', //供應商代號
                 'supplierEmail' => '', //供應商電子郵件
                 'packageLength' => '',
