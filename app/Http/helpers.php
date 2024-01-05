@@ -112,6 +112,7 @@ if (!function_exists('getZip')) {
      */
     function getZip($address)
     {
+        if ($address == '自取') return '23159';
         $response = Http::get('http://zip5.5432.tw/zip5json.py', [
             'adrs' =>  preg_replace('/^\d+\s*/', '', $address),
         ]);

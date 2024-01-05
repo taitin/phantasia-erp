@@ -163,8 +163,8 @@ class ApiController extends Controller
 
                 $address = explode(',', $ec->receiverAddress);
                 $stType = 'F';
-                $stCode = str_replace('F0', '', $address[0]) ?? '';
-                // $stCode = 'F020879';
+                $stCode = str_replace('F', '', $address[0]) ?? '';
+                // $stCode = '020879'; //F028079
                 $stName = $address[1] ?? '';
                 // $stName = '三重仁興店';
 
@@ -234,7 +234,7 @@ class ApiController extends Controller
 
         $products = [];
         foreach ($shipment->details as $detail) {
-            if ($detail->product->type < 5) {
+            if ($detail->product->type != 5) {
                 $product = getSameProductP2K($detail->product);
                 $products[] =
                     [
