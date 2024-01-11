@@ -142,7 +142,8 @@ class ApiController extends Controller
         $shipment = Shipment::find($request->shipmentID);
         $rtURL =   url('api/ky_callback');
         $payway = [0 => 1, 1 => 3]; //0 (PH)款到發貨=>(KY)1:取貨付款(店配) / 代收貨款(宅配) ;1(PH)貨到付款=>3:取貨不付款(店配) / 一般配送(宅配、海外)
-
+        $stCode = '';
+        $stName = '';
         //電商部
         if ($shipment->shopID == 666) {
             $orderID = $shipment->details->first()->orderProduct->orderID;
