@@ -74,7 +74,6 @@ class ActiveController extends AdminController
     protected function form()
     {
         return Form::make(new Active(), function (Form $form) {
-            $form->display('id');
             $form->text('title')->required();
             $form->textarea('description');
             $form->text('keywords');
@@ -92,6 +91,7 @@ class ActiveController extends AdminController
             $form->text('wait');
             $form->text('iframe');
             $form->text('iframe_height');
+            $form->hidden('id'); // id 設定為隱藏欄位，這個是重點
             $form->text('slug')->placeholder('請輸入一個英文或數字，如televesion')
                 ->rules('unique:activies,slug,' . request()->input('id') . ',id');
 
