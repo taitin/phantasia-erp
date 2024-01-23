@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Active;
 use App\Models\EcOrder;
 use App\Models\Product;
 use App\Models\Shipment;
@@ -288,5 +289,33 @@ class ApiController extends Controller
             $result['err'] = config('ky.errcode.' . $data['package']['orderStatus']);
         }
         return view('xml_result', $result);
+    }
+
+
+    function active(Request $request)
+    {
+
+        $active = Active::find($request->id);
+        if (empty($active)) $active = Active::where('slug', $request->id)->first();
+        $active = $active->toArray();
+        $active['og_image'] = Storage::url($active['og_image']);
+        $active['secs'] =
+            array_map(
+                function ($value) {
+                    return Storage::url($value);
+                },
+                array_column($active['secs'], 'image'),
+            );
+
+        $active['footers'] =
+            array_map(
+                function ($value) {
+                    return Storage::url($value);
+                },
+                array_column($active['footers'], 'image'),
+            );
+
+
+        return $active;
     }
 }

@@ -22,4 +22,6 @@ Route::group([
     $router->resource('subjects', 'SubjectController');
     $router->resource('subpoenas', 'SubpoenaController');
     $router->resource('products', 'ProductController');
+
+    $router->resource('activies', 'ActiveController');
 });

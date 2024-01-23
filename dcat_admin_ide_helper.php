@@ -24,6 +24,17 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection comment
      * @property Grid\Column|Collection type
      * @property Grid\Column|Collection deleted_at
+     * @property Grid\Column|Collection keywords
+     * @property Grid\Column|Collection og_image
+     * @property Grid\Column|Collection secs
+     * @property Grid\Column|Collection footers
+     * @property Grid\Column|Collection content
+     * @property Grid\Column|Collection start
+     * @property Grid\Column|Collection end
+     * @property Grid\Column|Collection wait
+     * @property Grid\Column|Collection iframe
+     * @property Grid\Column|Collection iframe_height
+     * @property Grid\Column|Collection slug
      * @property Grid\Column|Collection version
      * @property Grid\Column|Collection detail
      * @property Grid\Column|Collection logo
@@ -33,7 +44,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection permission
      * @property Grid\Column|Collection permission_id
      * @property Grid\Column|Collection menu_id
-     * @property Grid\Column|Collection slug
      * @property Grid\Column|Collection http_method
      * @property Grid\Column|Collection http_path
      * @property Grid\Column|Collection role_id
@@ -83,7 +93,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection avgCost
      * @property Grid\Column|Collection totalCost
      * @property Grid\Column|Collection mainID
-     * @property Grid\Column|Collection content
      * @property Grid\Column|Collection lockKey
      * @property Grid\Column|Collection day
      * @property Grid\Column|Collection checkID
@@ -380,6 +389,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection assignDate
      * @property Grid\Column|Collection assignT
      * @property Grid\Column|Collection tcgTotal
+     * @property Grid\Column|Collection sendKY
      * @property Grid\Column|Collection money
      * @property Grid\Column|Collection bsetDiscount
      * @property Grid\Column|Collection best30
@@ -421,7 +431,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection nonInvoice
      * @property Grid\Column|Collection nonJoinPurchaceDiscount
      * @property Grid\Column|Collection rule
-     * @property Grid\Column|Collection wait
      * @property Grid\Column|Collection limitNum
      * @property Grid\Column|Collection nonBonus
      * @property Grid\Column|Collection case
@@ -443,8 +452,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection pID
      * @property Grid\Column|Collection input
      * @property Grid\Column|Collection startConsignment
-     * @property Grid\Column|Collection end
      * @property Grid\Column|Collection supplierID
+     * @property Grid\Column|Collection ky
+     * @property Grid\Column|Collection phantasia
      * @property Grid\Column|Collection stockNum
      * @property Grid\Column|Collection checkNum
      * @property Grid\Column|Collection preTime
@@ -555,6 +565,17 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection comment(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
      * @method Grid\Column|Collection deleted_at(string $label = null)
+     * @method Grid\Column|Collection keywords(string $label = null)
+     * @method Grid\Column|Collection og_image(string $label = null)
+     * @method Grid\Column|Collection secs(string $label = null)
+     * @method Grid\Column|Collection footers(string $label = null)
+     * @method Grid\Column|Collection content(string $label = null)
+     * @method Grid\Column|Collection start(string $label = null)
+     * @method Grid\Column|Collection end(string $label = null)
+     * @method Grid\Column|Collection wait(string $label = null)
+     * @method Grid\Column|Collection iframe(string $label = null)
+     * @method Grid\Column|Collection iframe_height(string $label = null)
+     * @method Grid\Column|Collection slug(string $label = null)
      * @method Grid\Column|Collection version(string $label = null)
      * @method Grid\Column|Collection detail(string $label = null)
      * @method Grid\Column|Collection logo(string $label = null)
@@ -564,7 +585,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection permission(string $label = null)
      * @method Grid\Column|Collection permission_id(string $label = null)
      * @method Grid\Column|Collection menu_id(string $label = null)
-     * @method Grid\Column|Collection slug(string $label = null)
      * @method Grid\Column|Collection http_method(string $label = null)
      * @method Grid\Column|Collection http_path(string $label = null)
      * @method Grid\Column|Collection role_id(string $label = null)
@@ -614,7 +634,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection avgCost(string $label = null)
      * @method Grid\Column|Collection totalCost(string $label = null)
      * @method Grid\Column|Collection mainID(string $label = null)
-     * @method Grid\Column|Collection content(string $label = null)
      * @method Grid\Column|Collection lockKey(string $label = null)
      * @method Grid\Column|Collection day(string $label = null)
      * @method Grid\Column|Collection checkID(string $label = null)
@@ -911,6 +930,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection assignDate(string $label = null)
      * @method Grid\Column|Collection assignT(string $label = null)
      * @method Grid\Column|Collection tcgTotal(string $label = null)
+     * @method Grid\Column|Collection sendKY(string $label = null)
      * @method Grid\Column|Collection money(string $label = null)
      * @method Grid\Column|Collection bsetDiscount(string $label = null)
      * @method Grid\Column|Collection best30(string $label = null)
@@ -952,7 +972,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection nonInvoice(string $label = null)
      * @method Grid\Column|Collection nonJoinPurchaceDiscount(string $label = null)
      * @method Grid\Column|Collection rule(string $label = null)
-     * @method Grid\Column|Collection wait(string $label = null)
      * @method Grid\Column|Collection limitNum(string $label = null)
      * @method Grid\Column|Collection nonBonus(string $label = null)
      * @method Grid\Column|Collection case(string $label = null)
@@ -974,8 +993,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection pID(string $label = null)
      * @method Grid\Column|Collection input(string $label = null)
      * @method Grid\Column|Collection startConsignment(string $label = null)
-     * @method Grid\Column|Collection end(string $label = null)
      * @method Grid\Column|Collection supplierID(string $label = null)
+     * @method Grid\Column|Collection ky(string $label = null)
+     * @method Grid\Column|Collection phantasia(string $label = null)
      * @method Grid\Column|Collection stockNum(string $label = null)
      * @method Grid\Column|Collection checkNum(string $label = null)
      * @method Grid\Column|Collection preTime(string $label = null)
@@ -1091,6 +1111,17 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection comment
      * @property Show\Field|Collection type
      * @property Show\Field|Collection deleted_at
+     * @property Show\Field|Collection keywords
+     * @property Show\Field|Collection og_image
+     * @property Show\Field|Collection secs
+     * @property Show\Field|Collection footers
+     * @property Show\Field|Collection content
+     * @property Show\Field|Collection start
+     * @property Show\Field|Collection end
+     * @property Show\Field|Collection wait
+     * @property Show\Field|Collection iframe
+     * @property Show\Field|Collection iframe_height
+     * @property Show\Field|Collection slug
      * @property Show\Field|Collection version
      * @property Show\Field|Collection detail
      * @property Show\Field|Collection logo
@@ -1100,7 +1131,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection permission
      * @property Show\Field|Collection permission_id
      * @property Show\Field|Collection menu_id
-     * @property Show\Field|Collection slug
      * @property Show\Field|Collection http_method
      * @property Show\Field|Collection http_path
      * @property Show\Field|Collection role_id
@@ -1150,7 +1180,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection avgCost
      * @property Show\Field|Collection totalCost
      * @property Show\Field|Collection mainID
-     * @property Show\Field|Collection content
      * @property Show\Field|Collection lockKey
      * @property Show\Field|Collection day
      * @property Show\Field|Collection checkID
@@ -1447,6 +1476,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection assignDate
      * @property Show\Field|Collection assignT
      * @property Show\Field|Collection tcgTotal
+     * @property Show\Field|Collection sendKY
      * @property Show\Field|Collection money
      * @property Show\Field|Collection bsetDiscount
      * @property Show\Field|Collection best30
@@ -1488,7 +1518,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection nonInvoice
      * @property Show\Field|Collection nonJoinPurchaceDiscount
      * @property Show\Field|Collection rule
-     * @property Show\Field|Collection wait
      * @property Show\Field|Collection limitNum
      * @property Show\Field|Collection nonBonus
      * @property Show\Field|Collection case
@@ -1510,8 +1539,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection pID
      * @property Show\Field|Collection input
      * @property Show\Field|Collection startConsignment
-     * @property Show\Field|Collection end
      * @property Show\Field|Collection supplierID
+     * @property Show\Field|Collection ky
+     * @property Show\Field|Collection phantasia
      * @property Show\Field|Collection stockNum
      * @property Show\Field|Collection checkNum
      * @property Show\Field|Collection preTime
@@ -1622,6 +1652,17 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection comment(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
      * @method Show\Field|Collection deleted_at(string $label = null)
+     * @method Show\Field|Collection keywords(string $label = null)
+     * @method Show\Field|Collection og_image(string $label = null)
+     * @method Show\Field|Collection secs(string $label = null)
+     * @method Show\Field|Collection footers(string $label = null)
+     * @method Show\Field|Collection content(string $label = null)
+     * @method Show\Field|Collection start(string $label = null)
+     * @method Show\Field|Collection end(string $label = null)
+     * @method Show\Field|Collection wait(string $label = null)
+     * @method Show\Field|Collection iframe(string $label = null)
+     * @method Show\Field|Collection iframe_height(string $label = null)
+     * @method Show\Field|Collection slug(string $label = null)
      * @method Show\Field|Collection version(string $label = null)
      * @method Show\Field|Collection detail(string $label = null)
      * @method Show\Field|Collection logo(string $label = null)
@@ -1631,7 +1672,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection permission(string $label = null)
      * @method Show\Field|Collection permission_id(string $label = null)
      * @method Show\Field|Collection menu_id(string $label = null)
-     * @method Show\Field|Collection slug(string $label = null)
      * @method Show\Field|Collection http_method(string $label = null)
      * @method Show\Field|Collection http_path(string $label = null)
      * @method Show\Field|Collection role_id(string $label = null)
@@ -1681,7 +1721,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection avgCost(string $label = null)
      * @method Show\Field|Collection totalCost(string $label = null)
      * @method Show\Field|Collection mainID(string $label = null)
-     * @method Show\Field|Collection content(string $label = null)
      * @method Show\Field|Collection lockKey(string $label = null)
      * @method Show\Field|Collection day(string $label = null)
      * @method Show\Field|Collection checkID(string $label = null)
@@ -1978,6 +2017,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection assignDate(string $label = null)
      * @method Show\Field|Collection assignT(string $label = null)
      * @method Show\Field|Collection tcgTotal(string $label = null)
+     * @method Show\Field|Collection sendKY(string $label = null)
      * @method Show\Field|Collection money(string $label = null)
      * @method Show\Field|Collection bsetDiscount(string $label = null)
      * @method Show\Field|Collection best30(string $label = null)
@@ -2019,7 +2059,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection nonInvoice(string $label = null)
      * @method Show\Field|Collection nonJoinPurchaceDiscount(string $label = null)
      * @method Show\Field|Collection rule(string $label = null)
-     * @method Show\Field|Collection wait(string $label = null)
      * @method Show\Field|Collection limitNum(string $label = null)
      * @method Show\Field|Collection nonBonus(string $label = null)
      * @method Show\Field|Collection case(string $label = null)
@@ -2041,8 +2080,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection pID(string $label = null)
      * @method Show\Field|Collection input(string $label = null)
      * @method Show\Field|Collection startConsignment(string $label = null)
-     * @method Show\Field|Collection end(string $label = null)
      * @method Show\Field|Collection supplierID(string $label = null)
+     * @method Show\Field|Collection ky(string $label = null)
+     * @method Show\Field|Collection phantasia(string $label = null)
      * @method Show\Field|Collection stockNum(string $label = null)
      * @method Show\Field|Collection checkNum(string $label = null)
      * @method Show\Field|Collection preTime(string $label = null)
