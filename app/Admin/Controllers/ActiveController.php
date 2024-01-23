@@ -92,7 +92,8 @@ class ActiveController extends AdminController
             $form->text('wait');
             $form->text('iframe');
             $form->text('iframe_height');
-            $form->text('slug')->placeholder('請輸入一個英文或數字，如televesion');
+            $form->text('slug')->placeholder('請輸入一個英文或數字，如televesion')
+                ->rules('unique:activies,slug,' . request()->input('id') . ',id');
 
 
             $form->display('created_at');
