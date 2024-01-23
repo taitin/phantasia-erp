@@ -297,6 +297,7 @@ class ApiController extends Controller
 
         $active = Active::find($request->id);
         if (empty($active)) $active = Active::where('slug', $request->id)->first();
+        if (empty($active)) return [];
         $active = $active->toArray();
         $active['og_image'] = Storage::url($active['og_image']);
         $active['secs'] =
@@ -315,6 +316,7 @@ class ApiController extends Controller
                 array_column($active['footers'], 'image'),
             );
 
+        $active['main'] = []; //商品
 
         return $active;
     }
