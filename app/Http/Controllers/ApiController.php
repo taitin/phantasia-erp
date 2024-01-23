@@ -317,6 +317,8 @@ class ApiController extends Controller
             );
 
         $active['main'] = []; //商品
+        $active['products'] = [];
+        $active['iframe_height'] .= 'px';
 
         return $active;
     }
