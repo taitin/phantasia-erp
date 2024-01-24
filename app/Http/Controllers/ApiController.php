@@ -300,21 +300,22 @@ class ApiController extends Controller
         if (empty($active)) return [];
         $active = $active->toArray();
         $active['og_image'] = Storage::url($active['og_image']);
-        $active['secs'] =
-            array_map(
-                function ($value) {
-                    return Storage::url($value);
-                },
-                array_column($active['secs'], 'image'),
-            );
-
-        $active['footers'] =
-            array_map(
-                function ($value) {
-                    return Storage::url($value);
-                },
-                array_column($active['footers'], 'image'),
-            );
+        if (!empty($active['secs']))
+            $active['secs'] =
+                array_map(
+                    function ($value) {
+                        return Storage::url($value);
+                    },
+                    array_column($active['secs'], 'image'),
+                );
+        if (!empty($active['footers']))
+            $active['footers'] =
+                array_map(
+                    function ($value) {
+                        return Storage::url($value);
+                    },
+                    array_column($active['footers'], 'image'),
+                );
 
         $active['main'] = []; //商品
         $active['products'] = [];
